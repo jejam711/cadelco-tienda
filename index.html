@@ -1,0 +1,167 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cadelco · Catálogo de televisores</title>
+<meta name="application-name" content="Cadelco">
+<meta name="description" content="Explora el catálogo de televisores Cadelco. Compara modelos Mystic, Sankey, Aiwa y ChiQ, consulta sus fichas técnicas y descubre sus características en presentaciones narradas.">
+<meta property="og:site_name" content="Cadelco">
+<meta property="og:title" content="Cadelco · Catálogo de televisores">
+<meta property="og:description" content="Explora los televisores Cadelco con filtros por marca, fichas técnicas y presentaciones narradas.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f5;--card:#fff;--ink:#14263d;--mut:#556579;--ac:#c8372d;--on:#fff;--nv:#1b3a5c;--ln:#dde3ea;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1621;--card:#17222f;--ink:#e8eef5;--mut:#9aabbd;--ac:#ff7a6e;--on:#2a0f0c;--nv:#8fb3dd;--ln:#27384a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1621;--card:#17222f;--ink:#e8eef5;--mut:#9aabbd;--ac:#ff7a6e;--on:#2a0f0c;--nv:#8fb3dd;--ln:#27384a;color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Manrope,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
+button{cursor:pointer}
+#hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--card);padding:10px 16px;display:flex;gap:12px;align-items:center;border-bottom:1px solid var(--ln)}
+#lg{height:40px;background:#fff;border-radius:6px;padding:2px}
+#hd b{font:700 28px/1 "Barlow Condensed","Arial Narrow",sans-serif;color:var(--nv);display:block}
+#hd small{color:var(--mut)}
+#tools{padding:12px 16px 4px}
+#q{width:100%;padding:12px 14px;border:1px solid var(--ln);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+#chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0 4px}
+.ch{flex:none;padding:7px 14px;border-radius:99px;border:1px solid var(--ln);background:var(--card);color:var(--ink);font:600 14px Manrope,system-ui,sans-serif}
+.ch.on{background:var(--nv);color:var(--card);border-color:var(--nv)}
+#grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:8px 16px 28px;max-width:900px;margin:auto}
+@media(min-width:700px){#grid{grid-template-columns:repeat(4,1fr)}}
+.cd{display:flex;flex-direction:column;gap:2px;text-align:left;background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:8px 8px 12px;color:var(--ink);font:inherit}
+.im,.hero{display:grid;place-items:center;background:#fff;border-radius:10px;overflow:hidden}
+.im{aspect-ratio:1;margin-bottom:8px}
+.im img,.hero img{max-width:94%;max-height:94%;object-fit:contain}
+.cd b{font:700 21px/1.1 "Barlow Condensed","Arial Narrow",sans-serif;padding:0 4px;overflow-wrap:anywhere}
+.cd small{color:var(--mut);padding:0 4px}
+.cd em{font-style:normal;font-size:13px;color:var(--ac);padding:0 4px;font-weight:600}
+.em{grid-column:1/-1;color:var(--mut);text-align:center}
+#det,#sv{position:fixed;inset:0 auto 0 50%;width:100%;max-width:560px;transform:translateX(-50%);z-index:20}
+#det{overflow:auto;background:var(--bg);padding:calc(env(safe-area-inset-top,0px) + 8px) 16px calc(env(safe-area-inset-bottom,0px) + 24px)}
+#bk{background:none;border:0;color:var(--nv);font:700 16px Manrope,sans-serif;padding:10px 0}
+#det .hero{height:230px;margin:6px 0 14px}
+#det h2{font:700 38px/1 "Barlow Condensed","Arial Narrow",sans-serif;margin:0;color:var(--nv)}
+.sub{color:var(--mut);margin:4px 0 14px}
+.play{width:100%;padding:15px;border:0;border-radius:12px;background:var(--ac);color:var(--on);font:800 16px Manrope,sans-serif}
+dl{margin:18px 0 0}dt{font-weight:800;color:var(--nv);margin-top:14px}dd{margin:2px 0 0}dd ul{margin:0;padding-left:18px}
+#sv{background:#0f2238;color:#fff;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 10px) 18px calc(env(safe-area-inset-bottom,0px) + 18px)}
+#bars,#tp{position:relative;z-index:2}
+#bars{display:flex;gap:4px}#bars i{flex:1;height:3px;background:#ffffff40;border-radius:2px;overflow:hidden}
+#bars u{display:block;height:100%;background:#fff}
+#tp{display:flex;justify-content:space-between;align-items:center;margin:10px 0}#tl{font-weight:800}
+.sb{background:#ffffff26;border:0;color:#fff;border-radius:99px;padding:8px 14px;font:600 14px Manrope,sans-serif}
+#pv,#nx{position:absolute;top:96px;bottom:0;border:0;background:none}
+#pv{left:0;width:35%}#nx{right:0;width:65%}
+#sc{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;pointer-events:none}
+.sk{color:#ff9a8f;font-weight:700;font-size:18px}
+#sc h1{font:700 clamp(56px,24vw,128px)/.92 "Barlow Condensed","Arial Narrow",sans-serif;margin:0;overflow-wrap:anywhere;animation:up .5s both}
+#sc p{font-size:19px;margin:0;max-width:34ch;color:#dbe6f2;animation:up .5s .15s both}
+#sc ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+#sc li{background:#ffffff1a;border-left:3px solid #ff6b5e;padding:10px 12px;border-radius:6px;opacity:0;animation:up .5s forwards}
+#sc .hero{height:200px;animation:up .5s both}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#sv{transition:background .8s}
+#sv::before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 30% 20%,#ff6b5e44,#0000 45%),radial-gradient(circle at 80% 80%,#4aa3ff40,#0000 50%);animation:dr 14s ease-in-out infinite alternate;pointer-events:none}
+@keyframes dr{to{transform:translate(8%,6%) scale(1.15)}}
+#tl{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#tp span:last-child{flex:none;display:flex;gap:6px}
+.scn{display:flex;flex-direction:column;gap:14px;animation:zi .7s both}
+@keyframes zi{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:none}}
+#sc .hero img{animation:kb 10s ease-out both}@keyframes kb{to{transform:scale(1.18)}}
+.px{height:150px;border-radius:12px;border:1px solid #ffffff33;background-image:linear-gradient(#ffffff55 1px,#0000 1px),linear-gradient(90deg,#ffffff55 1px,#0000 1px);background-size:var(--c) var(--c);animation:px 3.2s ease-out both}
+@keyframes px{from{background-size:70px 70px}}
+.cores{display:flex;gap:10px}.cores i{width:48px;height:48px;border-radius:10px;background:#ff6b5e;animation:co 1.1s ease-in-out infinite alternate}
+@keyframes co{from{opacity:.25;transform:scale(.8)}}
+.eq{display:flex;gap:6px;align-items:flex-end;height:110px}.eq i{flex:1;height:60%;background:#ff6b5e;border-radius:4px 4px 0 0;animation:eq .9s ease-in-out infinite alternate}
+@keyframes eq{from{height:12%}to{height:100%}}
+.ap{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.ap i{aspect-ratio:1;border-radius:14px;animation:pop .5s both}
+@keyframes pop{from{opacity:0;transform:scale(.3)}}
+.scn small{color:#dbe6f2}.bar{height:16px;border-radius:8px;background:#ffffff26;overflow:hidden;margin-top:4px}.bar u{display:block;height:100%;width:var(--w);background:#ff6b5e;border-radius:8px;animation:bf 1.6s .3s ease-out both}
+@keyframes bf{from{width:0}}
+.w{display:inline-block;margin-right:.3em;opacity:0;animation:up .5s forwards}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important}#sc li,.w{opacity:1}}
+</style></head><body>
+<header id="hd"><img id="lg" alt="Cadelco"><div><b>Televisores</b><small>Toca un modelo para ver su ficha</small></div></header>
+<div id="tools"><input id="q" type="search" placeholder="Buscar por marca o modelo" aria-label="Buscar"><div id="chips"></div></div>
+<main id="grid"></main>
+<section id="det" hidden></section>
+<section id="sv" hidden><div id="bars"></div><div id="tp"><span id="tl"></span><span><button class="sb" id="vz">Voz sí</button><button class="sb" id="ps">Pausar</button><button class="sb" id="cl">Cerrar</button></span></div><button id="pv" aria-label="Anterior"></button><button id="nx" aria-label="Siguiente"></button><div id="sc"></div></section>
+<script>
+const IM=["/img/cadelco-01.jpg", "/img/cadelco-02.jpg", "/img/cadelco-03.jpg", "/img/cadelco-04.jpg", "/img/cadelco-05.jpg", "/img/cadelco-06.jpg", "/img/cadelco-07.jpg", "/img/cadelco-08.jpg", "/img/cadelco-09.jpg", "/img/cadelco-10.jpg", "/img/cadelco-11.jpg", "/img/cadelco-12.jpg", "/img/cadelco-13.jpg", "/img/cadelco-14.jpg", "/img/cadelco-15.jpg", "/img/cadelco-16.jpg", "/img/cadelco-17.jpg", "/img/cadelco-18.jpg", "/img/cadelco-19.jpg", "/img/cadelco-20.jpg", "/img/cadelco-21.jpg", "/img/cadelco-22.jpg", "/img/cadelco-23.jpg", "/img/cadelco-24.jpg"];document.getElementById("lg").src="/img/cadelco-25.jpg";
+// [marca, modelo, pulgadas, tipo, resolución, Hz, contraste, procesador, sonido, sistema, memoria, conectividad, argumento]
+const D=[
+["Mystic","MT-3257",32,"LED","HD|1366×768 píxeles",60,"1000:1 a 3000:1, negros aceptables en ambientes con luz moderada","Básico|Procesador básico integrado","12 W|Estéreo de 10 a 12 W RMS con ecualizador de fábrica","No Smart|TV digital/analógico básico, sin plataforma inteligente de fábrica","No aplica|Sin sistema operativo que requiera memoria para apps","2 HDMI para Chromecast, Roku, Fire TV Stick, consolas o decodificadores|1–2 USB con reproductor de fotos, música y videos|VGA / PC Audio In: úsalo como monitor|Entrada coaxial para antena (ATSC/DVB-T)|Audio y video RCA para equipos antiguos|Sin Wi-Fi ni Bluetooth","Compacto para dormitorio, cocina o espacios secundarios. Básico y económico, enfocado en la conectividad multimedia tradicional. También sirve como monitor de computador."],
+["Mystic","MY-SV32306T",32,"LED","HD|1366×768, excelente nitidez y calibración de color",60,"3000:1 estático: negros profundos e imágenes vibrantes","Quad-Core|4 núcleos optimizados para la aceleración gráfica de VIDAA","Dolby Audio|Estéreo integrado con diálogos claros y sonido envolvente","VIDAA|Sistema operativo VIDAA optimizado","1 GB|RAM, con 4 GB de almacenamiento para las apps de VIDAA","Wi-Fi integrado de alta estabilidad|HDMI y USB|TDT (entrada coaxial)|Salida de audio óptica/digital","Para la habitación, la cocina o el cuarto de los niños: no se queda pegado al abrir Netflix. Equilibrio entre rapidez, diseño premium y precio accesible."],
+["Sankey","CLED-70SDH1",70,"LED","4K|3840×2160 con soporte HDR",60,"Dinámico, optimizado por su panel LED de alta densidad","Quad-Core|4 núcleos para escalar a 4K y mover los menús con fluidez","20 W|2×10 W RMS, Dolby Audio / Dynamic Sound, salida coaxial digital","Android TV|Smart Android TV","1 GB|RAM, con 8 GB de almacenamiento","Wi-Fi y Ethernet RJ45|Varios HDMI para consolas, decodificadores o barras de sonido|USB multimedia y grabación de TV abierta|Función PVR: graba a una memoria USB|Sintonizador digital integrado","Pantalla de gran formato para una experiencia de cine 4K en casa, con excelente relación costo-beneficio entre las pantallas gigantes."],
+["Sankey","CLED32SDF6",32,"LED frameless","HD|1366×768, sin marco",60,"Tecnología Cinema Visión, panel de ángulo de visión de 178°","Quad-Core|Procesador de 4 núcleos","10 W|Estéreo de 10 W RMS, diseño Ultra Slim","Android TV|Android / Android TV","1 GB|RAM, con 8 GB de almacenamiento","Bluetooth integrado para audífonos o barras de sonido|Wi-Fi y Ethernet RJ45|3 HDMI con decodificación H.264 y H.265|2 USB con reproductor y PVR (pausa o graba TV en vivo)|Salida coaxial de audio, entrada AV y jack de 3.5 mm","Uno de los Smart TV más competitivos de la marca en 32”. Destaca por añadir Bluetooth, poco común en este tamaño."],
+["Sankey","CLED40SDF6",40,"LED","Full HD|1920×1080",60,"Cinema Visión y ángulo de visión de 170°","Quad-Core|Procesador de 4 núcleos","30 W|Estéreo de 20 a 30 W, Dolby Digital para diálogos claros","Android TV|Smart Android TV (AOSP optimizada)","1 GB|RAM, con 8 GB de almacenamiento","Wi-Fi y Ethernet RJ45|Bluetooth para barras de sonido o auriculares|3 HDMI para consolas, decodificadores o laptops|2 USB con reproductor y PVR|Entradas AV, VGA (monitor) y salida coaxial","Ni muy pequeño para la sala ni demasiado grande para la habitación: tecnología actual y diseño premium cuidando tu presupuesto."],
+["Sankey","CLED50DW8",50,"LED","4K|3840×2160 con HDR",60,"Dinámico de nivel superior (High Contrast)","Quad-Core|Procesador de 4 núcleos","30 W|Estéreo de 20/30 W RMS con Dolby Audio","webOS|Smart TV webOS, acceso rápido a las apps","1.5 GB|RAM, con 8 GB de almacenamiento","Bluetooth integrado|Wi-Fi de alta velocidad y Ethernet RJ45|3 HDMI para consolas o decodificadores|2 USB con reproductor y PVR: pausa o graba TV en vivo","Acabado de gama alta con ingeniería Ultra Slim sin marcos. Incluye Magic Remote con voz, accesos rápidos y puntero en pantalla."],
+["Aiwa","AW32B4SMG",32,"LED frameless","HD|1366×768",60,"3000:1, calidad HDR/contraste","Dual Core|Procesador de doble núcleo","16 W|Dolby Audio, 2×8 W RMS","Google TV|Basado en Android 11, con Asistente de Google por voz","1.5 GB|RAM, con 8 GB de almacenamiento","Wi-Fi y Bluetooth integrados|Chromecast integrado: envía fotos, videos y música desde el celular|2–3 HDMI, 1–2 USB y LAN RJ45|Salida óptica, entrada AV y jack de 3.5 mm|Sintonizador digital HD","Smart TV con Google TV oficial que no obliga a sacrificar velocidad por precio. Lo enciendes, lo conectas al celular y empiezas a ver."],
+["ChiQ","G32QB",32,"LED","HD Ready|1366×768",60,"3000:1, 180 nits, ángulo de 178° y decodificación HDR10","Quad-Core|Procesador de 4 núcleos","12 W|Dolby Digital / Plus, 2×6 W en estéreo","Android TV|Android TV certificado (Android 11)","1.5 GB|RAM, con 8 GB de almacenamiento","Wi-Fi de alta estabilidad y LAN Ethernet|Bluetooth para audífonos, cornetas o gamepads|Chromecast integrado (Android o iOS)|2 HDMI y 1 USB|Entrada RCA, TDT y salida óptica|Asistente de Google en el control","Pequeño en tamaño, grande en practicidad: Smart TV rápido, moderno y de bajo costo para habitación, cocina o apartamento."],
+["ChiQ","G43QB",43,"LED","Full HD|1920×1080",60,"3000:1 estático","Quad-Core|Procesador de 4 núcleos","16 W|Dolby Audio, 2×8 W con dbx-tv que evita saltos de volumen","Android TV|Android TV 11 con Google Play Store","1 GB|RAM, con 8 GB de almacenamiento","Wi-Fi de doble banda (2.4 y 5 GHz)|Bluetooth|Chromecast y Screen Sharing|3 HDMI con ARC|2 USB|LAN, salida óptica, AV y jack de 3.5 mm|Control con micrófono para el Asistente de Google","Para sala o dormitorio principal: amplio, moderno y rápido, con diseño Frameless elegante en cualquier pared."],
+["Mystic","MY-SG40107T",40,"LED frameless","Full HD|1920×1080 con HDR10",60,"3000:1 estático, diseño Frameless que expande el espacio visual","Quad-Core|De 64 bits, para transiciones veloces y video HD","12 W|2×6 W estéreo con Dolby Audio","Google TV|Google TV oficial, perfiles de streaming unificados","1.5 GB|RAM, con 16 GB de almacenamiento","Wi-Fi y Ethernet RJ45|Bluetooth para barras de sonido o auriculares|Google Cast (Chromecast) integrado|2–3 HDMI y 2 USB|Control con micrófono (“Hey Google”)","El favorito de quien quiere dar el salto a una pantalla más inmersiva sin pagar de más."],
+["Aiwa","AW43B4SFG",43,"LED","Full HD|1920×1080",60,"3000:1, calidad de imagen HDR","Dual Core|Dedicado a la aceleración de video y menús","16 W|Dolby Audio certificado, 2×8 W RMS","Google TV|Google TV / Android TV 11 con acceso a Google Play Store","1.5 GB|RAM, con 8 GB de almacenamiento","Wi-Fi y Bluetooth integrados|Chromecast integrado|3 HDMI 1.4 y 2 USB 2.0|Ethernet RJ45|Salida óptica y entrada coaxial RF","El todoterreno de su serie: Android, Chromecast y Dolby Audio para maratones de series, películas en familia y TV diaria."],
+["Aiwa","AW50B4KFG",50,"QLED","4K|3840×2160, Dolby Vision, HDR10 y HLG",60,"3000:1 nativo, panel Blue Protect que reduce la luz azul","Dual Core|Con aceleración gráfica para 4K sin tirones","16 W|Dolby Audio, 2×8 W RMS","Google TV|Google TV / Android TV con Asistente de Google","1.5 GB|RAM, con 8 GB de almacenamiento","Wi-Fi y Ethernet LAN|Bluetooth y Chromecast integrado|4 HDMI 2.0 para consolas o decodificadores|2 USB 2.0|Salida óptica y entrada coaxial RF","La puerta de entrada al 4K de Aiwa: convierte tu sala en una verdadera sala de cine con Dolby Vision."],
+["Aiwa","AW75B4QFG",75,"QLED frameless","4K|3840×2160, Dolby Vision y HDR dinámico",60,"3000:1 nativo, marco metálico estructural","Dual-Core x2|Doble procesador más unidad gráfica dedicada","Dolby Atmos|2×8 W RMS con audio tridimensional","Google TV|Google TV oficial con “Hey Google” en el control","1.5 GB|RAM DDR, con 8 GB de almacenamiento flash","Wi-Fi de alta ganancia y Bluetooth|Chromecast (Android e iOS)|3–4 HDMI 2.0 con ARC|2 USB 2.0 multiformato|LAN, salida óptica, coaxial RF y AV","Para una sala de cine premium y vivir los partidos como si estuvieras en el estadio: la joya QLED de 75”."],
+["Aiwa","AW85B4QFG",85,"QLED","4K|3840×2160, Dolby Vision y HDR10",60,"3000:1 nativo, Frameless sin bordes","Dual-Core|Con reescalado automático a 4K","16 W|Dolby Audio, 2×8 W RMS","Google TV|Basado en Android TV 11, con Google Play Store","1.5 GB|RAM, con 8 GB de almacenamiento","Wi-Fi y Ethernet LAN|Bluetooth y Chromecast integrado|4 HDMI 2.0 con ARC|2 USB 2.0 multiformato|Antena RF, salida óptica y RCA|Control con micrófono","Un gigante de 85” que destaca por su tecnología QLED (Quantum Dots) y una experiencia de cine en casa inmersiva."],
+["ChiQ","G55QB",55,"LED (DLED)","4K|3840×2160 con HDR10",60,"3000:1 nativo, ángulo de 178°, bordes Frameless","Quad-Core|Procesador de 4 núcleos","16 W|Dolby Digital / Plus, 2×8 W RMS","Android TV|Android TV oficial (Android 11)","1.5 GB|RAM, con 8 GB de almacenamiento (unos 4 GB libres)","Wi-Fi y Bluetooth|Chromecast integrado|3 HDMI con ARC|2 USB|LAN, salida óptica, AV y TDT integrado|Asistente de Google por voz","El 55” es el tamaño más popular para la sala: equilibra inmersión, espacio y presupuesto."],
+["Aiwa","AW43B4Q",43,"QLED","Full HD|1920×1080, brillo de 250 nits",60,"3000:1 estático","Dual-Core|Reescalado de gráficos para fluidez de video","20 W|Dolby Audio / Digital, 2×10 W","Google TV|Google TV oficial","1.5 GB|RAM, con 8 GB de almacenamiento","Wi-Fi de doble banda y Bluetooth|Chromecast integrado|3 HDMI con ARC y 2 USB|LAN RJ45, salida óptica y jack de 3.5 mm|Mando con micrófono (Asistente de Google)","Tamaño justo para dormitorio o sala mediana, de una marca japonesa con historia y gran imagen QLED."],
+["Aiwa","AW55B4Q",55,"QLED frameless","4K|3840×2160 con Anti-Bluelight",60,"3000:1 estático","Dual-Core x2|4 núcleos lógicos con acelerador gráfico","16 W|Dolby Audio, 2×8 W RMS","Google TV|Basado en Android TV 11, con Google Play Store","1.5 GB|RAM, con 8 GB de almacenamiento flash","Wi-Fi y Bluetooth|Chromecast integrado|4 HDMI 2.0 con ARC|2 USB 2.0 multiformato|LAN, coaxial RF y salida óptica","El verdadero salto al cine en casa con 55”: QLED, 4 HDMI y Google TV."],
+["Aiwa","AW58B2Q",58,"QLED frameless","4K|3840×2160, puntos cuánticos",60,"Dinámico superior de 5000:1","Quad-Core|ARM Cortex-A55 a 1.53 GHz","16 W|Dolby Digital, 2×8 W RMS","Google TV|Google TV oficial con acceso a Google Play Store","2 GB|RAM, con 8 GB de almacenamiento","Wi-Fi y Bluetooth|Chromecast integrado|3 HDMI con eARC|2 USB 2.0|LAN, RCA, salida óptica y sintonizador digital|Control con micrófono (“Hey Google”)","Puntos cuánticos para un brillo espectacular y un contraste profundo, con Google TV y 2 GB de RAM."],
+["Aiwa","AW65B2Q",65,"No confirmado","4K|3840×2160, HDR10 y Dolby Vision",60,"3000:1 nativo, panel QLED","Dual-Core|Con unidad de aceleración gráfica","20 W|Dolby Audio, 2×10 W RMS","Google TV|Google TV oficial con Google Play","2 GB|RAM, con 8 GB de almacenamiento (unos 4 GB libres)","Wi-Fi y Bluetooth|Chromecast integrado|4 HDMI con ARC/eARC|2 USB 2.0|LAN, salida óptica y coaxial RF","Es el tamaño que el cliente imagina al decir “quiero un televisor grande para la sala”: amplio y envolvente para cine, series y deportes en familia."],
+["Aiwa","AW86B2Q",86,"QLED frameless","4K|3840×2160, Dolby Vision y HDR10",60,"Panel QLED de colores puros; MEMC suaviza el movimiento (peso aprox. 43.5 kg)","Quad-Core|ARM Cortex-A55 con tecnología MEMC","30 W|2×15 W RMS con Dolby Atmos y DTS TruSurround","Google TV|Google TV oficial con recomendaciones personalizadas","2 GB|RAM, con 8 GB de almacenamiento","Wi-Fi de doble banda y Bluetooth 5.1|Chromecast integrado|4 HDMI con eARC|2 USB 2.0|LAN, antena RF y salida óptica|Control con micrófono","Convierte cualquier película en un evento: la experiencia de una sala IMAX en casa."],
+["Aiwa","AW98B2QGF",98,"No confirmado","4K|3840×2160, Dolby Vision y HDR10+",120,"Nativo de 3000:1 a 5000:1 con zonas de atenuación","Quad-Core|Con escalado AI 4K","30 W|2×15 W RMS con Dolby Atmos y DTS Virtual:X","Google TV|Google TV oficial con Asistente de Google","1.5 GB|RAM DDR, con 8 GB de almacenamiento flash","4 HDMI (HDMI 2.1: 4K a 120 Hz, eARC y tasa variable)|2 USB 2.0/3.0|Wi-Fi de doble banda y Bluetooth 5.1|Chromecast integrado|Ethernet RJ45, salida óptica y entrada AV","La pantalla más titánica y avanzada de Aiwa: protagonista absoluta de salas amplias y cine en casa."],
+["Aiwa","AW32B2RK",32,"LED","HD|1366×768 (720p)",60,"Nativo de 1200:1","Quad-Core|Motor AIPQ a 1.9 GHz","12 W|Dolby Audio / Digital, 2×6 W RMS","Roku TV|Interfaz fluida y minimalista (no permite APK)","512 MB|RAM, con 512 MB de almacenamiento","Wi-Fi y Bluetooth|3 HDMI y 1 USB|LAN RJ45 y AV RCA|Salida óptica y jack de 3.5 mm|Voz, Apple AirPlay/Home, Google Home y Alexa","Para habitación, cocina u oficina: no se pega jamás y cualquiera en casa lo usa sin complicaciones. Lo conectas a internet y en minutos ya estás viendo tus aplicaciones favoritas."],
+["Aiwa","AW40B2RK",40,"LED","Full HD|1920×1080",60,"Estático nativo de 1200:1 con retroiluminación DLED","Quad-Core|ARM Cortex-A35 a 1.9 GHz","12 W|Dolby Audio / Digital, 2×6 W RMS","Roku TV|Interfaz fluida y minimalista (no permite APK)","512 MB|RAM, con 512 MB de almacenamiento","Wi-Fi y Bluetooth|3 HDMI y 2 USB|LAN RJ45, AV, salida óptica y jack de 3.5 mm|Voz, app móvil de Roku, duplicación de pantalla, Alexa, Google Home y AirPlay","Tamaño perfecto para la habitación principal o una sala mediana: rápido de verdad y sin complicaciones."],
+["Mystic","MY-SQGH50206",50,"QLED","4K|3840×2160, Dolby Vision y HDR",60,"Nativo de 3000:1 a 5000:1","Quad-Core|De 64 bits para escalar a 4K y acelerar la interfaz","16 W|Dolby Atmos, 2×8 W RMS","Android TV|Android TV certificado, Play Store con más de 10,000 apps","2 GB|RAM (según el lote), con 8 a 16 GB de almacenamiento","Wi-Fi y Bluetooth|Chromecast integrado|3 HDMI con eARC/ARC|2 USB con grabación directa|LAN, salida óptica y Asistente de Google en el mando","Transformará por completo su sala: películas y partidos con la calidad visual de un cine de lujo."]
+];
+const $=s=>document.querySelector(s),sp=s=>s.split("|"),BR=["Todos","Mystic","Sankey","Aiwa","ChiQ"];
+let br="Todos",SL=[],S=0,E=0,du=5000,P=0;
+function chips(){$("#chips").innerHTML=BR.map(b=>`<button class="ch${b==br?" on":""}" data-b="${b}">${b}</button>`).join("")}
+function grid(){const q=$("#q").value.toLowerCase();
+$("#grid").innerHTML=D.map((d,i)=>[d,i]).filter(([d])=>(br=="Todos"||d[0]==br)&&(d[0]+" "+d[1]+" "+d[2]).toLowerCase().includes(q)).map(([d,i])=>`<button class="cd" data-i="${i}"><span class="im"><img src="${IM[i]}" alt="${d[0]} ${d[1]}" loading="lazy"></span><b>${d[1]}</b><small>${d[0]} · ${d[2]}”</small><em>${sp(d[4])[0]} · ${sp(d[9])[0]}</em></button>`).join("")||`<p class="em">No hay modelos que coincidan.</p>`}
+$("#chips").onclick=e=>{const b=e.target.dataset.b;if(b){br=b;chips();grid()}};
+$("#q").oninput=grid;
+$("#grid").onclick=e=>{const c=e.target.closest(".cd");if(c)detail(+c.dataset.i)};
+function detail(i){const d=D[i],j=x=>sp(x).join(": "),r=(k,v)=>`<dt>${k}</dt><dd>${v}</dd>`;
+$("#det").innerHTML=`<button id="bk">‹ Volver al catálogo</button><div class="hero"><img src="${IM[i]}" alt="${d[0]} ${d[1]}"></div><h2>${d[1]}</h2><p class="sub">${d[0]} · ${d[2]}” · ${d[3]}</p><button class="play" id="pl">Ver video</button><dl>${r("Pantalla",d[2]+"” "+d[3]+" · "+d[5]+" Hz")+r("Resolución",j(d[4]))+r("Contraste",d[6])+r("Procesador",j(d[7]))+r("Sonido",j(d[8]))+r("Sistema operativo",j(d[9]))+r("Memoria",j(d[10]))+r("Conectividad","<ul>"+d[11].split("|").map(x=>`<li>${x}</li>`).join("")+"</ul>")+r("Argumento de venta",d[12])}</dl>`;
+$("#det").hidden=false;$("#det").scrollTop=0;document.body.style.overflow="hidden";
+$("#bk").onclick=()=>{$("#det").hidden=true;document.body.style.overflow=""};
+$("#pl").onclick=()=>{SL=slides(i);S=0;P=0;$("#ps").textContent="Pausar";$("#tl").textContent=d[0]+" "+d[1];$("#sv").hidden=false;draw()}}
+function slides(i){CI=i;const d=D[i],p=x=>[sp(x)[0],sp(x)[1]||""],a=p(d[4]),c=p(d[7]),s=p(d[8]),o=p(d[9]),m=p(d[10]),l=d[11].split("|");return[
+{k:d[0],h:d[1],s:d[2]+"” "+d[3],v:"hero",t:`${d[0]} ${d[1]}. ${d[2]} pulgadas.`,c:"#0f2238"},
+{k:"Pantalla",h:a[0],s:a[1]+" · "+d[5]+" Hz. Contraste: "+d[6],v:"px",t:`Pantalla ${d[3]}, resolución ${a[0]}, a ${d[5]} hercios.`,c:"#12294a"},
+{k:"Procesador",h:c[0],s:c[1],v:"cpu",t:`Procesador ${c[0]}. ${c[1]}.`,c:"#2a1840"},
+{k:"Sonido",h:s[0],s:s[1],v:"eq",t:`Sonido de ${s[0]}. ${s[1]}.`,c:"#3a1622"},
+{k:"Sistema operativo",h:o[0],s:o[1],v:"apps",t:`${o[0]}. ${o[1]}.`,c:"#0f3a3a"},
+{k:"Memoria",h:m[0],s:m[1],v:"mem",t:`Memoria: ${m[0]} ${m[1]}.`,c:"#1d2f12"},
+{k:"Conectividad",h:"Conexiones",l,v:"list",t:"Conectividad. "+l.slice(0,3).join(". ")+".",c:"#15234d"},
+{k:"Por qué elegirlo",h:d[1],s:d[12],v:"end",t:d[12],c:"#0f2238"}]}
+function vis(s){const v=s.v;
+if(v=="hero")return`<div class="hero"><img src="${IM[CI]}" alt=""></div>`;
+if(v=="px")return`<div class="px" style="--c:${/4K/.test(s.h)?7:/Full/.test(s.h)?14:22}px"></div>`;
+if(v=="cpu"){const n=/x2|Quad/.test(s.h)?4:/Dual/.test(s.h)?2:1;return`<div class="cores">${Array.from({length:n},(_,j)=>`<i style="animation-delay:${j*.25}s"></i>`).join("")}</div>`}
+if(v=="eq")return`<div class="eq">${Array.from({length:14},(_,j)=>`<i style="animation-duration:${.5+(j*37%7)/10}s;animation-delay:${-j*.13}s"></i>`).join("")}</div>`;
+if(v=="apps")return`<div class="ap">${["#e50914","#ff0000","#0a84ff","#1db954","#ffb400","#7d4cff","#00b894","#ff6b5e"].map((c,j)=>`<i style="background:${c};animation-delay:${j*.18}s"></i>`).join("")}</div>`;
+if(v=="mem"){const g=t=>{const m=/(\d+(?:\.\d+)?)\s*(GB|MB)/.exec(t||"");return m?(m[2]=="MB"?m[1]/1024:+m[1]):0},r=g(s.h),q=/(\d+(?:\.\d+)?\s*(?:GB|MB))\s*de almacenamiento/.exec(s.s),st=g(q&&q[1]);return r?`<div><small>Memoria RAM</small><div class="bar"><u style="--w:${Math.min(100,r/4*100)}%"></u></div></div>${st?`<div><small>Almacenamiento</small><div class="bar"><u style="--w:${Math.min(100,st/16*100)}%"></u></div></div>`:""}`:""}
+if(v=="list")return`<ul>${s.l.map((x,j)=>`<li style="animation-delay:${j*.5}s">${x}</li>`).join("")}</ul>`;
+return""}
+var CI=0,V=1,SP=0;window.speechSynthesis&&speechSynthesis.getVoices();function pick(){const vs=(window.speechSynthesis?speechSynthesis.getVoices():[]).filter(v=>/^es/i.test(v.lang));let b=null,bs=-9;vs.forEach(v=>{const n=v.name,sc=(/es[-_](MX|US|419)/i.test(v.lang)?3:/es[-_](CO|AR|CL|PE|VE|UY|EC|GT|CR|PA|DO|BO|PY|SV|HN|NI|PR|CU)/i.test(v.lang)?2:0)+(/jorge|juan|diego|carlos|alonso|pablo|raúl|raul|gonzalo|mateo|andr[eé]s|jes[uú]s|\bmale\b|masc/i.test(n)?5:0)-(/paulina|angelica|ang[eé]lica|dalia|paloma|sof[ií]a|soledad|monica|m[oó]nica|lupe|marisol|francisca|catalina|elena|helena|laura|female|femen/i.test(n)?5:0)+(/natural|online/i.test(n)?1:0);if(sc>bs){bs=sc;b=v}});return b}
+function say(t){const y=window.speechSynthesis,k=++say.n;SP=0;if(!y)return;y.cancel();if(!V)return;const u=new SpeechSynthesisUtterance(t),vv=pick();if(vv){u.voice=vv;u.lang=vv.lang}else u.lang="es-MX";u.pitch=.75;u.rate=.95;SP=1;u.onend=u.onerror=()=>{if(k==say.n)SP=0};y.speak(u)}say.n=0;
+function stop(){say.n++;SP=0;const y=window.speechSynthesis;if(y){y.cancel();y.resume()}$("#sv").hidden=true}
+function draw(){const s=SL[S];E=0;du=4500+(s.l?s.l.length*700:0)+(s.q?3000:0);
+const n=s.h.length,fs=n<=8?"min(24vw,128px)":n<=16?"min(14vw,80px)":"min(10vw,56px)",tx=s.v=="end"?s.s.split(" ").map((w,j)=>`<span class="w" style="animation-delay:${.3+j*.09}s">${w} </span>`).join(""):s.s;
+$("#sv").style.background=s.c;
+$("#bars").innerHTML=SL.map((_,j)=>`<i><u style="width:${j<S?100:0}%"></u></i>`).join("");
+$("#sc").innerHTML=`<div class="scn"><div class="sk">${s.k}</div>${vis(s)}<h1 style="font-size:${fs}">${s.h}</h1>${tx?`<p>${tx}</p>`:""}</div>`;
+const h=$("#sc h1"),m=/^(\d+(?:\.\d+)?)(.*)$/.exec(s.h);
+if(m&&s.v!="hero"){const n=+m[1],t0=performance.now(),f=x=>{const k=Math.min(1,(x-t0)/1200);h.textContent=(n%1?(n*k).toFixed(1):Math.round(n*k))+m[2];if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+say(s.t)}
+function go(n){S+=n;if(S<0)S=0;if(S>=SL.length){stop();return}draw()}
+$("#nx").onclick=()=>go(1);$("#pv").onclick=()=>go(-1);$("#cl").onclick=stop;
+$("#ps").onclick=()=>{P=!P;$("#ps").textContent=P?"Reproducir":"Pausar";const y=window.speechSynthesis;if(y){P?y.pause():y.resume()}};
+$("#vz").onclick=()=>{V=!V;$("#vz").textContent=V?"Voz sí":"Voz no";if(V)say(SL[S].t);else{say.n++;SP=0;const y=window.speechSynthesis;if(y)y.cancel()}};
+onkeydown=e=>{if($("#sv").hidden)return;if(e.key=="ArrowRight")go(1);if(e.key=="ArrowLeft")go(-1);if(e.key=="Escape")stop()};
+setInterval(()=>{if($("#sv").hidden||P)return;E+=50;const u=$("#bars i:nth-child("+(S+1)+") u");if(u)u.style.width=Math.min(100,E/du*100)+"%";if(E>=du&&(!SP||E>=du+9000))go(1)},50);
+chips();grid();
+</script></body></html>
