@@ -18,6 +18,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Manrope,syste
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
 button{cursor:pointer}
 #hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--card);padding:10px 16px;display:flex;gap:12px;align-items:center;border-bottom:1px solid var(--ln)}
+#social-notice{margin:0;padding:16px max(18px,calc((100vw - 900px)/2));background:#1b3a5c;color:#fff;border-bottom:4px solid #ef9c71;box-shadow:0 4px 16px #14263d18}
+#social-notice p{margin:0;font-size:14px;line-height:1.65;max-width:75ch}
+#social-notice strong{font-weight:800;color:#ffcfaf}
 #lg{height:40px;background:#fff;border-radius:6px;padding:2px}
 #hd b{font:700 28px/1 "Barlow Condensed","Arial Narrow",sans-serif;color:var(--nv);display:block}
 #hd small{color:var(--mut)}
@@ -81,12 +84,24 @@ dl{margin:18px 0 0}dt{font-weight:800;color:var(--nv);margin-top:14px}dd{margin:
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important}#sc li,.w{opacity:1}}
 </style></head><body>
+<aside id="social-notice" role="note" aria-label="Aviso sobre el audio en Instagram" hidden><p><strong>¿No escuchas el audio? 🔊</strong> Toca los tres puntos de arriba a la derecha y selecciona "Abrir en el navegador externo" para escuchar la presentación de los artículos.</p></aside>
 <header id="hd"><img id="lg" alt="Cadelco"><div><b>Televisores</b><small>Toca un modelo para ver su ficha</small></div></header>
 <div id="tools"><input id="q" type="search" placeholder="Buscar por marca o modelo" aria-label="Buscar"><div id="chips"></div></div>
 <main id="grid"></main>
 <section id="det" hidden></section>
 <section id="sv" hidden><div id="bars"></div><div id="tp"><span id="tl"></span><span><button class="sb" id="vz">Voz sí</button><button class="sb" id="ps">Pausar</button><button class="sb" id="cl">Cerrar</button></span></div><button id="pv" aria-label="Anterior"></button><button id="nx" aria-label="Siguiente"></button><div id="sc"></div></section>
 <script>
+// La detección depende del identificador que exponga el navegador integrado.
+function socialBrowser(userAgent){
+if(/Instagram/i.test(userAgent))return "instagram";
+if(/FBAN|FBAV|FB_IAB|FBIOS|FBDV/i.test(userAgent))return "facebook";
+if(/TikTok|musical_ly|Bytedance|Bytelocale/i.test(userAgent))return "tiktok";
+if(/LinkedInApp/i.test(userAgent))return "linkedin";
+if(/Snapchat/i.test(userAgent))return "snapchat";
+return null;
+}
+const inAppBrowser=socialBrowser(navigator.userAgent||"");
+document.getElementById("social-notice").hidden=inAppBrowser!=="instagram";
 const IM=["/img/cadelco-01.jpg", "/img/cadelco-02.jpg", "/img/cadelco-03.jpg", "/img/cadelco-04.jpg", "/img/cadelco-05.jpg", "/img/cadelco-06.jpg", "/img/cadelco-07.jpg", "/img/cadelco-08.jpg", "/img/cadelco-09.jpg", "/img/cadelco-10.jpg", "/img/cadelco-11.jpg", "/img/cadelco-12.jpg", "/img/cadelco-13.jpg", "/img/cadelco-14.jpg", "/img/cadelco-15.jpg", "/img/cadelco-16.jpg", "/img/cadelco-17.jpg", "/img/cadelco-18.jpg", "/img/cadelco-19.jpg", "/img/cadelco-20.jpg", "/img/cadelco-21.jpg", "/img/cadelco-22.jpg", "/img/cadelco-23.jpg", "/img/cadelco-24.jpg"];document.getElementById("lg").src="/img/cadelco-25.jpg";
 // [marca, modelo, pulgadas, tipo, resolución, Hz, contraste, procesador, sonido, sistema, memoria, conectividad, argumento]
 const D=[
@@ -146,8 +161,81 @@ if(v=="apps")return`<div class="ap">${["#e50914","#ff0000","#0a84ff","#1db954","
 if(v=="mem"){const g=t=>{const m=/(\d+(?:\.\d+)?)\s*(GB|MB)/.exec(t||"");return m?(m[2]=="MB"?m[1]/1024:+m[1]):0},r=g(s.h),q=/(\d+(?:\.\d+)?\s*(?:GB|MB))\s*de almacenamiento/.exec(s.s),st=g(q&&q[1]);return r?`<div><small>Memoria RAM</small><div class="bar"><u style="--w:${Math.min(100,r/4*100)}%"></u></div></div>${st?`<div><small>Almacenamiento</small><div class="bar"><u style="--w:${Math.min(100,st/16*100)}%"></u></div></div>`:""}`:""}
 if(v=="list")return`<ul>${s.l.map((x,j)=>`<li style="animation-delay:${j*.5}s">${x}</li>`).join("")}</ul>`;
 return""}
-var CI=0,V=1,SP=0;window.speechSynthesis&&speechSynthesis.getVoices();function pick(){const vs=(window.speechSynthesis?speechSynthesis.getVoices():[]).filter(v=>/^es/i.test(v.lang));let b=null,bs=-9;vs.forEach(v=>{const n=v.name,sc=(/es[-_](MX|US|419)/i.test(v.lang)?3:/es[-_](CO|AR|CL|PE|VE|UY|EC|GT|CR|PA|DO|BO|PY|SV|HN|NI|PR|CU)/i.test(v.lang)?2:0)+(/jorge|juan|diego|carlos|alonso|pablo|raúl|raul|gonzalo|mateo|andr[eé]s|jes[uú]s|\bmale\b|masc/i.test(n)?5:0)-(/paulina|angelica|ang[eé]lica|dalia|paloma|sof[ií]a|soledad|monica|m[oó]nica|lupe|marisol|francisca|catalina|elena|helena|laura|female|femen/i.test(n)?5:0)+(/natural|online/i.test(n)?1:0);if(sc>bs){bs=sc;b=v}});return b}
-function say(t){const y=window.speechSynthesis,k=++say.n;SP=0;if(!y)return;y.cancel();if(!V)return;const u=new SpeechSynthesisUtterance(t),vv=pick();if(vv){u.voice=vv;u.lang=vv.lang}else u.lang="es-MX";u.pitch=.75;u.rate=.95;SP=1;u.onend=u.onerror=()=>{if(k==say.n)SP=0};y.speak(u)}say.n=0;
+var CI=0,V=1,SP=0;
+// Preferir voces femeninas latinas; conservar una alternativa en español.
+function pick(){
+const vs=(window.speechSynthesis?speechSynthesis.getVoices():[]).filter(v=>/^es(?:[-_]|$)/i.test(v.lang));
+const score=v=>{
+const female=/paulina|angelica|ang[eé]lica|dalia|paloma|sof[ií]a|soledad|monica|m[oó]nica|lupe|marisol|francisca|catalina|elena|helena|laura|sabina|hilda|mia|camila|carlota|conchita|lucia|luc[ií]a|penelope|female|femen/i.test(v.name);
+const male=/jorge|juan|diego|carlos|alonso|pablo|ra[uú]l|gonzalo|mateo|andr[eé]s|jes[uú]s|\bmale\b|masc/i.test(v.name);
+const latin=/^es[-_](MX|US|419|CO|AR|CL|PE|VE|UY|EC|GT|CR|PA|DO|BO|PY|SV|HN|NI|PR|CU)$/i.test(v.lang);
+return (female?100:0)+(latin?40:0)+(male?-60:0)+(/natural|neural|online|premium/i.test(v.name)?10:0)+(/^es[-_]MX$/i.test(v.lang)?2:0);
+};
+return vs.sort((a,b)=>score(b)-score(a))[0]||null
+}
+function voicesReady(y){
+if(y.getVoices().length)return Promise.resolve();
+return new Promise(resolve=>{
+const done=()=>{clearTimeout(timer);y.removeEventListener("voiceschanged",ready);resolve()},ready=()=>{if(y.getVoices().length)done()};
+const timer=setTimeout(done,1200);y.addEventListener("voiceschanged",ready);ready()
+})
+}
+// Diccionario exclusivo de narración: las fichas conservan su escritura original.
+const spokenLetters={A:"a",B:"be",C:"ce",D:"de",E:"e",F:"efe",G:"ge",H:"hache",I:"i",J:"jota",K:"ka",L:"ele",M:"eme",N:"ene",O:"o",P:"pe",Q:"cu",R:"erre",S:"ese",T:"te",U:"u",V:"uve",W:"doble ve",X:"equis",Y:"ye",Z:"zeta"};
+function spokenModel(model){
+return model.replace(/^CLED/i,"ce led ").replace(/\d{4,}/g,n=>n.slice(0,2)+" "+n.slice(2)).match(/ce led|[A-Z]|\d+/gi).map(part=>spokenLetters[part]||part).join(" ")
+}
+function spoken(t){return t
+.replace(/\b(?:MY-[A-Z]+\d+[A-Z]*|MT-\d+|AW\d+[A-Z0-9]+|G\d+QB|CLED-?\d+[A-Z0-9]+)\b/gi,m=>spokenModel(m.toUpperCase()))
+.replace(/\bAIWA\b/gi,"áiua")
+.replace(/\bMystic\b/gi,"místic")
+.replace(/\bChiQ\b/gi,"chic")
+.replace(/\bSankey\b/gi,"sánkei")
+.replace(/\bRoku\b/gi,"róku")
+.replace(/\bARM[ -]+Cortex[ -]*A(\d+)\b/gi,"arm córtex a $1")
+.replace(/\bMEMC\b/gi,"memsi")
+.replace(/\bDTS\s+TruSurround\b/gi,"de te ese tru saráund")
+.replace(/\bDTS\b/g,"de te ese")
+.replace(/\bGoogle\s+TV\b/gi,"gúgol ti vi")
+.replace(/\bGoogle\b/gi,"gúgol")
+.replace(/\bDolby\s+Atmos\b/gi,"dólbi atmos")
+.replace(/\bDolby\s+Audio\b/gi,"dólbi audio")
+.replace(/\bFrameless\b/gi,"fréimles")
+.replace(/\bChromecast\b/gi,"crómcast")
+.replace(/\bEthernet\b/gi,"éternet")
+.replace(/\bHDR(?=\d|\b)/gi,"hache de erre ")
+.replace(/\bQLED\b/gi,"kiu led")
+.replace(/\bDLED\b/gi,"de led")
+.replace(/\bLED\b/gi,"led")
+.replace(/\beARC\b/gi,"iarc")
+.replace(/\bARC\b/gi,"arc")
+.replace(/(\d+(?:[.,]\d+)?)\s*GB\b/gi,"$1 gigabytes")
+.replace(/\bGB\b/g,"gigabytes")
+.replace(/(\d+(?:[.,]\d+)?)\s*MB\b/gi,"$1 megabytes")
+.replace(/(\d+(?:[.,]\d+)?)\s*W\b/g,"$1 vatios")
+.replace(/(\d+)\s*Hz\b/gi,"$1 jercios")
+.replace(/\bhercios\b/gi,"jercios")
+.replace(/\b4K\b/gi,"cuatro ka")
+.replace(/\bFull HD\b/gi,"full hache de")
+.replace(/\bHDMI\b/g,"hache de eme i")
+.replace(/\bHD\b/g,"hache de")
+.replace(/\bUSB\b/g,"u ese be")
+.replace(/\bRAM\b/g,"ram")
+.replace(/(\d)\.(\d)/g,"$1 coma $2")
+.replace(/(\d)\s*[×x]\s*(\d)/g,"$1 por $2")
+.replace(/\s*\/\s*/g,", ")
+.replace(/\.\s*\./g,".")
+.replace(/\s+/g," ").trim()}
+async function say(t){
+const y=window.speechSynthesis,k=++say.n;SP=0;if(!y)return;y.cancel();if(!V)return;SP=1;
+await voicesReady(y);if(k!==say.n||!V)return;
+const u=new SpeechSynthesisUtterance(spoken(t)),vv=pick();
+if(vv){u.voice=vv;u.lang=vv.lang}else u.lang="es-MX";
+u.pitch=1;u.rate=0.94;u.volume=1;
+u.onend=u.onerror=()=>{if(k===say.n)SP=0};
+y.speak(u);if(P)y.pause()
+}say.n=0;
+window.speechSynthesis&&speechSynthesis.getVoices();
 function stop(){say.n++;SP=0;const y=window.speechSynthesis;if(y){y.cancel();y.resume()}$("#sv").hidden=true}
 function draw(){const s=SL[S];E=0;du=4500+(s.l?s.l.length*700:0)+(s.q?3000:0);
 const n=s.h.length,fs=n<=8?"min(24vw,128px)":n<=16?"min(14vw,80px)":"min(10vw,56px)",tx=s.v=="end"?s.s.split(" ").map((w,j)=>`<span class="w" style="animation-delay:${.3+j*.09}s">${w} </span>`).join(""):s.s;
