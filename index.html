@@ -164,4 +164,46 @@ $("#vz").onclick=()=>{V=!V;$("#vz").textContent=V?"Voz sí":"Voz no";if(V)say(SL
 onkeydown=e=>{if($("#sv").hidden)return;if(e.key=="ArrowRight")go(1);if(e.key=="ArrowLeft")go(-1);if(e.key=="Escape")stop()};
 setInterval(()=>{if($("#sv").hidden||P)return;E+=50;const u=$("#bars i:nth-child("+(S+1)+") u");if(u)u.style.width=Math.min(100,E/du*100)+"%";if(E>=du&&(!SP||E>=du+9000))go(1)},50);
 chips();grid();
+<!-- BANNER DE AVISO PARA INSTAGRAM -->
+<div id="instagram-banner" style="display:none; background:#ff4757; color:#fff; text-align:center; padding:12px; font-family:sans-serif; font-size:14px; position:sticky; top:0; z-index:99999; box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+  ¿No escuchas el audio? 🔊 Toca los 3 puntos de arriba a la derecha y elige <strong>"Abrir en el navegador externo"</strong>.
+</div>
+
+<script>
+// DETECTAR SI ENTRA DESDE EL NAVEGADOR INTERNO DE INSTAGRAM O FACEBOOK
+function detectarInstagram() {
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  return (ua.indexOf("Instagram") > -1 || ua.indexOf("FBAN") > -1 || ua.indexOf("FBAV") > -1);
+}
+
+// MOSTRAR BANNER SI ES INSTAGRAM
+document.addEventListener("DOMContentLoaded", function() {
+  if (detectarInstagram()) {
+    document.getElementById("instagram-banner").style.display = "block";
+  }
+});
+
+// FUNCIÓN DE VOZ FEMENINA CORREGIDA CON LIMPIEZA DE CANAL PARA REDES SOCIALES
+function reproducirVozFemenina(textoALeer) {
+  // Limpiar cualquier audio atascado en el WebView de Instagram
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    
+    const enunciado = new SpeechSynthesisUtterance(textoALeer);
+    enunciado.lang = 'es-ES'; // Forzar español de España/Latinoamérica
+    enunciado.rate = 1.0;     // Velocidad normal de lectura
+    enunciado.pitch = 1.1;    // Tono ligeramente más agudo para asegurar timbre femenino
+
+    // Buscar una voz femenina disponible en el sistema del visitante
+    const voces = window.speechSynthesis.getVoices();
+    const vozFemenina = voces.find(v => v.lang.includes('es') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('helena') || v.name.toLowerCase().includes('zira')));
+    
+    if (vozFemenina) {
+      enunciado.voice = vozFemenina;
+    }
+
+    window.speechSynthesis.speak(enunciado);
+  }
+}
+</script>
 </script></body></html>
