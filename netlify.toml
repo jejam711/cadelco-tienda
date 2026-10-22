@@ -10,6 +10,9 @@ redirects = []
 publish = "."
 publishOrigin = "config"
 
+[context.deploy-preview]
+publish = "."
+
   [build.environment]
 
   [build.processing]
