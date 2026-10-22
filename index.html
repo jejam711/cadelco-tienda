@@ -179,31 +179,27 @@ function detectarInstagram() {
 // MOSTRAR BANNER SI ES INSTAGRAM
 document.addEventListener("DOMContentLoaded", function() {
   if (detectarInstagram()) {
-    document.getElementById("instagram-banner").style.display = "block";
+    const banner = document.getElementById("instagram-banner");
+    if (banner) banner.style.display = "block";
   }
 });
 
-// FUNCIÓN DE VOZ FEMENINA CORREGIDA CON LIMPIEZA DE CANAL PARA REDES SOCIALES
+// RESPALDO DE LA FUNCIÓN DE VOZ ADAPTADA
 function reproducirVozFemenina(textoALeer) {
-  // Limpiar cualquier audio atascado en el WebView de Instagram
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    
     const enunciado = new SpeechSynthesisUtterance(textoALeer);
-    enunciado.lang = 'es-ES'; // Forzar español de España/Latinoamérica
-    enunciado.rate = 1.0;     // Velocidad normal de lectura
-    enunciado.pitch = 1.1;    // Tono ligeramente más agudo para asegurar timbre femenino
+    enunciado.lang = 'es-ES';
+    enunciado.rate = 1.0;
+    enunciado.pitch = 1.1;
 
-    // Buscar una voz femenina disponible en el sistema del visitante
     const voces = window.speechSynthesis.getVoices();
-    const vozFemenina = voces.find(v => v.lang.includes('es') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('helena') || v.name.toLowerCase().includes('zira')));
-    
-    if (vozFemenina) {
-      enunciado.voice = vozFemenina;
-    }
+    const vozFemenina = voces.find(v => v.lang.includes('es') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('helena')));
+    if (vozFemenina) enunciado.voice = vozFemenina;
 
-    window.speechSynthesis.speak(enunciado);
+    window.speechSynthesis.speak(enunciance);
   }
 }
 </script>
-</script></body></html>
+</body>
+</html>
