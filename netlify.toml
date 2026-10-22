@@ -7,8 +7,11 @@ redirects = []
   [functions."*"]
 
 [build]
-publish = "/opt/build/repo/public"
+publish = "."
 publishOrigin = "config"
+
+[context.deploy-preview]
+publish = "."
 
   [build.environment]
 
