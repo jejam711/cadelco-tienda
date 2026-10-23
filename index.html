@@ -146,22 +146,65 @@ if(v=="apps")return`<div class="ap">${["#e50914","#ff0000","#0a84ff","#1db954","
 if(v=="mem"){const g=t=>{const m=/(\d+(?:\.\d+)?)\s*(GB|MB)/.exec(t||"");return m?(m[2]=="MB"?m[1]/1024:+m[1]):0},r=g(s.h),q=/(\d+(?:\.\d+)?\s*(?:GB|MB))\s*de almacenamiento/.exec(s.s),st=g(q&&q[1]);return r?`<div><small>Memoria RAM</small><div class="bar"><u style="--w:${Math.min(100,r/4*100)}%"></u></div></div>${st?`<div><small>Almacenamiento</small><div class="bar"><u style="--w:${Math.min(100,st/16*100)}%"></u></div></div>`:""}`:""}
 if(v=="list")return`<ul>${s.l.map((x,j)=>`<li style="animation-delay:${j*.5}s">${x}</li>`).join("")}</ul>`;
 return""}
-var CI=0,V=1,SP=0;window.speechSynthesis&&speechSynthesis.getVoices();function pick(){const vs=(window.speechSynthesis?speechSynthesis.getVoices():[]).filter(v=>/^es/i.test(v.lang));let b=null,bs=-9;vs.forEach(v=>{const n=v.name,sc=(/es[-_](MX|US|419)/i.test(v.lang)?3:/es[-_](CO|AR|CL|PE|VE|UY|EC|GT|CR|PA|DO|BO|PY|SV|HN|NI|PR|CU)/i.test(v.lang)?2:0)+(/jorge|juan|diego|carlos|alonso|pablo|raúl|raul|gonzalo|mateo|andr[eé]s|jes[uú]s|\bmale\b|masc/i.test(n)?5:0)-(/paulina|angelica|ang[eé]lica|dalia|paloma|sof[ií]a|soledad|monica|m[oó]nica|lupe|marisol|francisca|catalina|elena|helena|laura|female|femen/i.test(n)?5:0)+(/natural|online/i.test(n)?1:0);if(sc>bs){bs=sc;b=v}});return b}
-function say(t){const y=window.speechSynthesis,k=++say.n;SP=0;if(!y)return;y.cancel();if(!V)return;const u=new SpeechSynthesisUtterance(t),vv=pick();if(vv){u.voice=vv;u.lang=vv.lang}else u.lang="es-MX";u.pitch=.75;u.rate=.95;SP=1;u.onend=u.onerror=()=>{if(k==say.n)SP=0};y.speak(u)}say.n=0;
+var CI=0,V=1,SP=0;window.speechSynthesis&&speechSynthesis.getVoices();
+
+function pick(){
+  const vs=(window.speechSynthesis?speechSynthesis.getVoices():[]).filter(v=>/^es/i.test(v.lang));
+  let b=null,bs=-9;
+  vs.forEach(v=>{
+    const n=v.name,sc=(/es[-_](MX|US|419)/i.test(v.lang)?3:/es[-_](CO|AR|CL|PE|VE|UY|EC|GT|CR|PA|DO|BO|PY|SV|HN|NI|PR|CU)/i.test(v.lang)?2:0)
+    +(/paulina|angelica|ang[eé]lica|dalia|paloma|sof[ií]a|soledad|monica|m[oó]nica|lupe|marisol|francisca|catalina|elena|helena|sabina|laura|female|femen/i.test(n)?5:0)
+    -(/jorge|juan|diego|carlos|alonso|pablo|raúl|raul|gonzalo|mateo|andr[eé]s|jes[uú]s|\bmale\b|masc/i.test(n)?5:0)
+    +(/natural|online/i.test(n)?1:0);
+    if(sc>bs){bs=sc;b=v}
+  });
+  return b;
+}
+
+function say(t){
+  const y=window.speechSynthesis,k=++say.n;SP=0;
+  if(!y)return;
+  y.cancel(); 
+  if(!V)return;
+  const u=new SpeechSynthesisUtterance(t),vv=pick();
+  if(vv){u.voice=vv;u.lang=vv.lang}else u.lang="es-MX";
+  u.pitch=1.1; 
+  u.rate=.95;
+  SP=1;
+  u.onend=u.onerror=()=>{if(k==say.n)SP=0};
+  y.speak(u);
+}
+say.n=0;
+
 function stop(){say.n++;SP=0;const y=window.speechSynthesis;if(y){y.cancel();y.resume()}$("#sv").hidden=true}
-function draw(){const s=SL[S];E=0;du=4500+(s.l?s.l.length*700:0)+(s.q?3000:0);
-const n=s.h.length,fs=n<=8?"min(24vw,128px)":n<=16?"min(14vw,80px)":"min(10vw,56px)",tx=s.v=="end"?s.s.split(" ").map((w,j)=>`<span class="w" style="animation-delay:${.3+j*.09}s">${w} </span>`).join(""):s.s;
-$("#sv").style.background=s.c;
-$("#bars").innerHTML=SL.map((_,j)=>`<i><u style="width:${j<S?100:0}%"></u></i>`).join("");
-$("#sc").innerHTML=`<div class="scn"><div class="sk">${s.k}</div>${vis(s)}<h1 style="font-size:${fs}">${s.h}</h1>${tx?`<p>${tx}</p>`:""}</div>`;
-const h=$("#sc h1"),m=/^(\d+(?:\.\d+)?)(.*)$/.exec(s.h);
-if(m&&s.v!="hero"){const n=+m[1],t0=performance.now(),f=x=>{const k=Math.min(1,(x-t0)/1200);h.textContent=(n%1?(n*k).toFixed(1):Math.round(n*k))+m[2];if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
-say(s.t)}
+function draw(){const s=SL[S];E=0;du=4500+(s.l?s.l.length*700:0)+(s.q?3000:0);const n=s.h.length,fs=n<=8?"min(24vw,128px)":n<=16?"min(14vw,80px)":"min(10vw,56px)",tx=s.v=="end"?s.s.split(" ").map((w,j)=>`<span class="w" style="animation-delay:${.3+j*.09}s">${w} </span>`).join(""):s.s;$("#sv").style.background=s.c;$("#bars").innerHTML=SL.map((_,j)=>`<i><u style="width:${j<S?100:0}%"></u></i>`).join("");$("#sc").innerHTML=`<div class="scn"><div class="sk">${s.k}</div>${vis(s)}<h1 style="font-size:${fs}">${s.h}</h1>${tx?`<p>${tx}</p>`:""}</div>`;const h=$("#sc h1"),m=/^(\d+(?:\.\d+)?)(.*)$/.exec(s.h);if(m&&s.v!="hero"){const n=+m[1],t0=performance.now(),f=x=>{const k=Math.min(1,(x-t0)/1200);h.textContent=(n%1?(n*k).toFixed(1):Math.round(n*k))+m[2];if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}say(s.t)}
 function go(n){S+=n;if(S<0)S=0;if(S>=SL.length){stop();return}draw()}
 $("#nx").onclick=()=>go(1);$("#pv").onclick=()=>go(-1);$("#cl").onclick=stop;
 $("#ps").onclick=()=>{P=!P;$("#ps").textContent=P?"Reproducir":"Pausar";const y=window.speechSynthesis;if(y){P?y.pause():y.resume()}};
 $("#vz").onclick=()=>{V=!V;$("#vz").textContent=V?"Voz sí":"Voz no";if(V)say(SL[S].t);else{say.n++;SP=0;const y=window.speechSynthesis;if(y)y.cancel()}};
 onkeydown=e=>{if($("#sv").hidden)return;if(e.key=="ArrowRight")go(1);if(e.key=="ArrowLeft")go(-1);if(e.key=="Escape")stop()};
 setInterval(()=>{if($("#sv").hidden||P)return;E+=50;const u=$("#bars i:nth-child("+(S+1)+") u");if(u)u.style.width=Math.min(100,E/du*100)+"%";if(E>=du&&(!SP||E>=du+9000))go(1)},50);
-chips();grid();
-</script></body></html>
+
+chips();
+grid();
+</script>
+
+<!-- BANNER DE AVISO PARA INSTAGRAM -->
+<div id="instagram-banner" style="display:none; background:#ff4757; color:#fff; text-align:center; padding:12px; font-family:sans-serif; font-size:14px; position:sticky; top:0; z-index:99999; box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+  ¿No escuchas el audio? 🔊 Toca los 3 puntos de arriba a la derecha y elige <strong>"Abrir en el navegador externo"</strong>.
+</div>
+
+<script>
+function detectarInstagram() {
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  return (ua.indexOf("Instagram") > -1 || ua.indexOf("FBAN") > -1 || ua.indexOf("FBAV") > -1);
+}
+document.addEventListener("DOMContentLoaded", function() {
+  if (detectarInstagram()) {
+    const banner = document.getElementById("instagram-banner");
+    if (banner) banner.style.display = "block";
+  }
+});
+</script>
+</body>
+</html>
