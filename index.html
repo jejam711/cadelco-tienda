@@ -197,7 +197,15 @@ grid();
 <script>
 function detectarInstagram() {
   const ua = navigator.userAgent || navigator.vendor || window.opera;
-  return (ua.indexOf("Instagram") > -1 || ua.indexOf("FBAN") > -1 || ua.indexOf("FBAV") > -1);
+  // Filtro avanzado que detecta todas las variantes ocultas de Instagram y Facebook
+  return (
+    ua.indexOf("Instagram") > -1 || 
+    ua.indexOf("FBAN") > -1 || 
+    ua.indexOf("FBAV") > -1 || 
+    ua.indexOf("FB_IAB") > -1 || 
+    ua.indexOf("FB4A") > -1 || 
+    ua.indexOf("Barcelona") > -1
+  );
 }
 document.addEventListener("DOMContentLoaded", function() {
   if (detectarInstagram()) {
