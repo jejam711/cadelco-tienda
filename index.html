@@ -225,5 +225,56 @@ grid();
   }
 })();
 </script>
+<!-- Sección Visual del Newsletter -->
+<section style="padding: 40px; text-align: center; background: #f4f4f4; font-family: sans-serif;">
+  <h3>Únete a nuestro Newsletter</h3>
+  <p>Recibe las últimas novedades y ofertas de CadelcoStore directamente en tu correo.</p>
+  
+  <form id="form-newsletter" style="max-width: 400px; margin: 0 auto; display: flex; gap: 10px;">
+    <input type="text" id="nombre-newsletter" placeholder="Tu nombre (opcional)" style="padding: 10px; flex: 1; border: 1px solid #ccc; border-radius: 4px;">
+    <input type="email" id="email-newsletter" required placeholder="Tu correo electrónico" style="padding: 10px; flex: 2; border: 1px solid #ccc; border-radius: 4px;">
+    <button type="submit" style="padding: 10px 20px; background: #000; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Suscribirse</button>
+  </form>
+  
+  <p id="mensaje-newsletter" style="margin-top: 15px; font-weight: bold; display: none;"></p>
+</section>
+
+<!-- Conector que envía los datos al motor de Vercel -->
+<script>
+  document.getElementById('form-newsletter').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const nombre = document.getElementById('nombre-newsletter').value;
+    const email = document.getElementById('email-newsletter').value;
+    const mensajeTexto = document.getElementById('mensaje-newsletter');
+    
+    mensajeTexto.style.display = 'block';
+    mensajeTexto.style.color = '#000';
+    mensajeTexto.innerText = 'Procesando tu suscripción...';
+    
+    try {
+      const respuesta = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email })
+      });
+      
+      const resultado = await respuesta.json();
+      
+      if (resultado.success) {
+        mensajeTexto.style.color = 'green';
+        mensajeTexto.innerText = resultado.message;
+        document.getElementById('form-newsletter').reset();
+      } else {
+        mensajeTexto.style.color = 'red';
+        mensajeTexto.innerText = resultado.message;
+      }
+    } catch (error) {
+      mensajeTexto.style.color = 'red';
+      mensajeTexto.innerText = 'Hubo un problema con la conexión. Inténtalo más tarde.';
+    }
+  });
+</script>
+
 </body>
 </html>
