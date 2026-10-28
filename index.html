@@ -347,14 +347,14 @@ setInterval(()=>{if($("#sv").hidden||P)return;E+=50;const u=$("#bars i:nth-child
       mensajeTexto.innerText = 'Hubo un problema con la conexión. Inténtalo más tarde.';
     }
   });
-// Inyección dinámica avanzada e interactividad de Cadelco C.A.
+// Inyección dinámica corregida y optimizada de Cadelco C.A.
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Crear e inyectar el Cintillo Superior y Banner usando el logo oficial
+  // 1. Crear e inyectar el Cintillo Superior y Banner con Logo Delgado
   const cabeceraHTML = `
-    <header style="background: #ffffff; border-bottom: 3px solid #0A255C; font-family: sans-serif; position: sticky; top: 0; z-index: 1000; padding: 10px 20px;">
+    <header style="background: #ffffff; border-bottom: 3px solid #0A255C; font-family: sans-serif; position: sticky; top: 0; z-index: 1000; padding: 5px 20px;">
       <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
         
-       <!-- Contenedor del Logo Optimizado (Cabecera más angosta) -->
+        <!-- Contenedor del Logo Optimizado (Cabecera más angosta) -->
         <div style="min-width: 110px; max-width: 120px; padding: 2px 0;">
           <img src="/img/logo-cadelco.jpg" alt="CADELCO C.A." style="width: 100%; max-height: 45px; object-fit: contain; display: block;">
         </div>
@@ -409,55 +409,54 @@ document.addEventListener("DOMContentLoaded", () => {
   const elForm = document.getElementById("mps") || document.body.lastElementChild;
   if(elForm) elForm.insertAdjacentHTML("beforebegin", historialHTML);
 
-  // 3. LOGICA INTERACTIVA DEL MEGA MENÚ
+  // 3. LÓGICA INTERACTIVA DEL MEGA MENÚ
   const btnCategorias = document.getElementById("btn-categorias");
   const megaMenu = document.getElementById("mega-menu-cadelco");
   const menuFlex = document.getElementById("menu-data-flex");
   const loadingMenu = document.getElementById("loading-menu");
 
-  // Alternar visibilidad del menú al hacer clic
-  btnCategorias.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const estaOculto = megaMenu.style.display === "none";
-    megaMenu.style.display = estaOculto ? "flex" : "none";
-    
-    // Si se abre, cargamos los datos reales desde Neon a través de la API
-    if (estaOculto && menuFlex.children.length === 0) {
-      fetch("/api/categorias")
-        .then(res => res.json())
-        .then(data => {
-          if (data.success && data.menu) {
-            loadingMenu.style.display = "none";
-            // Construir el árbol visual con los estilos de la marca
-            data.menu.forEach(padre => {
-              let columna = document.createElement("div");
-              columna.style.cssText = "flex: 1; min-width: 200px; font-family: sans-serif;";
-              
-              let tituloPadre = `<h4 style="color: #0A255C; margin: 0 0 10px 0; font-size: 15px; border-bottom: 1px solid #0A255C; padding-bottom: 4px; text-transform: uppercase;">${padre.nombre_visible}</h4>`;
-              let listaHijas = `<ul style="list-style: none; padding: 0; margin: 0;">`;
-              
-              padre.subcategorias.forEach(hija => {
-                listaHijas += `<li style="margin-bottom: 8px;"><a href="#" class="enlace-subcat" data-id="${hija.id}" style="color: #333333; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#D31027'" onmouseout="this.style.color='#333333'">html_entity_decode${hija.nombre_visible}</a></li>`;
+  if(btnCategorias && megaMenu) {
+    btnCategorias.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const estaOculto = megaMenu.style.display === "none";
+      megaMenu.style.display = estaOculto ? "flex" : "none";
+      
+      if (estaOculto && menuFlex && menuFlex.children.length === 0) {
+        fetch("/api/categorias")
+          .then(res => res.json())
+          .then(data => {
+            if (data.success && data.menu && loadingMenu) {
+              loadingMenu.style.display = "none";
+              data.menu.forEach(padre => {
+                let columna = document.createElement("div");
+                columna.style.cssText = "flex: 1; min-width: 200px; font-family: sans-serif;";
+                
+                let tituloPadre = `<h4 style="color: #0A255C; margin: 0 0 10px 0; font-size: 15px; border-bottom: 1px solid #0A255C; padding-bottom: 4px; text-transform: uppercase;">${padre.nombre_visible}</h4>`;
+                let listaHijas = `<ul style="list-style: none; padding: 0; margin: 0;">`;
+                
+                padre.subcategorias.forEach(hija => {
+                  listaHijas += `<li style="margin-bottom: 8px;"><a href="#" class="enlace-subcat" data-id="${hija.id}" style="color: #333333; text-decoration: none; font-size: 14px;" onmouseover="this.style.color='#D31027'" onmouseout="this.style.color='#333333'">${hija.nombre_visible}</a></li>`;
+                });
+                
+                listaHijas += `</ul>`;
+                columna.innerHTML = tituloPadre + listaHijas;
+                menuFlex.appendChild(columna);
               });
-              
-              listaHijas += `</ul>`;
-              columna.innerHTML = tituloPadre + listaHijas;
-              menuFlex.appendChild(columna);
-            });
-          }
-        })
-        .catch(err => {
-          loadingMenu.innerText = "Error al conectar con el servidor.";
-          console.error(err);
-        });
-    }
-  });
+            }
+          })
+          .catch(err => {
+            if(loadingMenu) loadingMenu.innerText = "Error al conectar con el servidor.";
+            console.error(err);
+          });
+      }
+    });
 
-   // Cerrar el menú si el usuario hace clic en cualquier otra parte vacía de la pantalla
-  document.addEventListener("click", () => {
-    megaMenu.style.display = "none";
-  });
-  megaMenu.addEventListener("click", (e) => e.stopPropagation());
+    document.addEventListener("click", () => {
+      megaMenu.style.display = "none";
+    });
+    megaMenu.addEventListener("click", (e) => e.stopPropagation());
+  }
+});
 
 </script>
 
