@@ -453,12 +453,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Cerrar el menú si el usuario hace clic en cualquier otra parte de la pantalla
+   // Cerrar el menú si el usuario hace clic en cualquier otra parte vacía de la pantalla
   document.addEventListener("click", () => {
-    megaMenu.style.style.display = "none";
+    megaMenu.style.display = "none";
   });
   megaMenu.addEventListener("click", (e) => e.stopPropagation());
-});
 
 </script>
 
