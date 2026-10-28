@@ -219,7 +219,28 @@ function say(t){
   if(!y)return;
   y.cancel();
   if(!V)return;
-  const u=new SpeechSynthesisUtterance(t),vv=pick();
+
+  // DICCIONARIO DE PRONUNCIACIÓN: Corrige la fonética para el navegador en español
+  let textoCorregido = t;
+  const filtros = [
+    { error: /\bAiwa\b/gi, correccion: "Áigua" },
+    { error: /\bChiQ\b/gi, correccion: "Chic" },
+    { error: /\bSankey\b/gi, correccion: "Sánqui" },
+    { error: /\bMystic\b/gi, correccion: "Místic" },
+    { error: /\bUHD\b/gi, correccion: "Ultra Hache Dé" },
+    { error: /\b4K\b/gi, correccion: "Cuatro Ca" },
+    { error: /\bHDMI\b/gi, correccion: "Ache De Eme I" },
+    { error: /\bPineco\b/gi, correccion: "Pinéco" },
+    { error: /\bTukeke\b/gi, correccion: "Tukéke" },
+    { error: /\bPrestige\b/gi, correccion: "Prestísh" }
+  ];
+
+  // Aplicamos los filtros de voz de forma automática antes de que la IA hable
+  filtros.forEach(f => {
+    textoCorregido = textoCorregido.replace(f.error, f.correccion);
+  });
+
+  const u=new SpeechSynthesisUtterance(textoCorregido),vv=pick();
   if(vv){u.voice=vv;u.lang=vv.lang}else u.lang="es-MX";
   u.pitch=1.1;
   u.rate=.95;
@@ -228,6 +249,7 @@ function say(t){
   y.speak(u);
 }
 say.n=0;
+
 
 function stop(){say.n++;SP=0;const y=window.speechSynthesis;if(y){y.cancel();y.resume()}$("#sv").hidden=true}
 function draw(){const s=SL[S];E=0;du=4500+(s.l?s.l.length*700:0)+(s.q?3000:0);const n=s.h.length,fs=n<=8?"min(24vw,128px)":n<=16?"min(14vw,80px)":"min(10vw,56px)",tx=s.v=="end"?s.s.split(" ").map((w,j)=>`<span class="w" style="animation-delay:${.3+j*.09}s">${w} </span>`).join(""):s.s;$("#sv").style.background=s.c;$("#bars").innerHTML=SL.map((_,j)=>`<i><u style="width:${j<S?100:0}%"></u></i>`).join("");$("#sc").innerHTML=`<div class="scn"><div class="sk">${s.k}</div>${vis(s)}<h1 style="font-size:${fs}">${s.h}</h1>${tx?`<p>${tx}</p>`:""}</div>`;const h=$("#sc h1"),m=/^(\d+(?:\.\d+)?)(.*)$/.exec(s.h);if(m&&s.v!="hero"){const n=+m,t0=performance.now(),f=x=>{const k=Math.min(1,(x-t0)/1200);h.textContent=(n%1?(n*k).toFixed(1):Math.round(n*k))+m;if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}say(s.t)}
