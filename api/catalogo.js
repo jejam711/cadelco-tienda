@@ -24,7 +24,8 @@ export default async function handler(req, res) {
         precio_bcv, 
         imagen_url, 
         video_url, 
-        caracteristicas_tecnicas
+        caracteristicas_tecnicas,
+        argumento_venta_pitch
       FROM articulos_web 
       WHERE exhibir_en_web = TRUE
       ORDER BY id ASC;
