@@ -347,30 +347,39 @@ setInterval(()=>{if($("#sv").hidden||P)return;E+=50;const u=$("#bars i:nth-child
       mensajeTexto.innerText = 'Hubo un problema con la conexión. Inténtalo más tarde.';
     }
   });
-// Inyección dinámica de la interfaz de Cadelco C.A. (Evita modificar el HTML superior)
+// Inyección dinámica avanzada e interactividad de Cadelco C.A.
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Crear e inyectar el Cintillo Superior y Banner de Temporada
+  // 1. Crear e inyectar el Cintillo Superior y Banner usando el logo oficial
   const cabeceraHTML = `
     <header style="background: #ffffff; border-bottom: 3px solid #0A255C; font-family: sans-serif; position: sticky; top: 0; z-index: 1000; padding: 10px 20px;">
       <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
-        <div style="display: flex; flex-direction: column; min-width: 180px;">
-          <span style="font-size: 24px; font-weight: bold; color: #0A255C; letter-spacing: 1px;">CADELCO <span style="color: #D31027;">C.A.</span></span>
-          <small style="font-style: italic; font-size: 11px; color: #555555; margin-top: -3px;">... Con todos los hierros</small>
+        
+        <!-- Contenedor del Logo Oficial -->
+        <div style="min-width: 160px; max-width: 180px;">
+          <img src="/img/logo-cadelco.jpg" alt="CADELCO C.A." style="width: 100%; height: auto; display: block;">
         </div>
+
+        <!-- Barra de Búsqueda Dinámica al Centro -->
         <div style="flex: 1; max-width: 600px; display: flex; border: 2px solid #0A255C; border-radius: 4px; overflow: hidden;">
           <input type="text" id="buscador-cadelco" placeholder="Buscar televisores, pinturas y más..." style="width: 100%; padding: 10px 15px; border: none; font-size: 14px; outline: none; color: #000000; background: #ffffff;">
           <button style="background: #0A255C; color: #ffffff; border: none; padding: 0 20px; cursor: pointer; font-size: 16px;">🔍</button>
         </div>
+
+        <!-- Menú Desplegable Avanzado de Categorías -->
         <nav style="position: relative;">
           <button id="btn-categorias" style="background: #ffffff; border: 1px solid #0A255C; padding: 8px 15px; font-size: 14px; font-weight: bold; color: #0A255C; cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 8px;">
             Categorías <span style="font-size: 10px; color: #D31027;">▼</span>
           </button>
-          <div id="mega-menu-cadelco" style="display: none; position: absolute; right: 0; top: 120%; background: #ffffff; border: 1px solid #e0e0e0; box-shadow: 0 6px 12px rgba(0,0,0,0.15); width: 450px; padding: 20px; border-radius: 4px; border-top: 4px solid #D31027; flex-wrap: wrap; gap: 20px; max-height: 500px; overflow-y: auto;">
-            <!-- Rellenado dinámico backend -->
+          
+          <!-- Contenedor del Mega Menú Estilo Avanzado -->
+          <div id="mega-menu-cadelco" style="display: none; position: absolute; right: 0; top: 120%; background: #ffffff; border: 1px solid #e0e0e0; box-shadow: 0 6px 12px rgba(0,0,0,0.15); width: 480px; padding: 20px; border-radius: 4px; border-top: 4px solid #D31027; z-index: 2000; max-height: 500px; overflow-y: auto;">
+            <div id="loading-menu" style="color: #666; font-size: 13px; text-align: center; width: 100%;">Cargando clasificaciones...</div>
+            <div id="menu-data-flex" style="display: flex; flex-wrap: wrap; gap: 25px; width: 100%;"></div>
           </div>
         </nav>
       </div>
     </header>
+
     <section id="banner-temporada" style="background: #f8f9fa; padding: 25px 20px; border-bottom: 1px solid #e9ecef; font-family: sans-serif;">
       <div style="max-width: 1200px; margin: 0 auto; background: #ffffff; border-left: 5px solid #D31027; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
         <div style="text-align: left;">
@@ -384,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.body.insertAdjacentHTML("afterbegin", cabeceraHTML);
 
-  // 2. Crear e inyectar las secciones inferiores de Historial
+  // 2. Inyección de las cajas de Historial e Inspiración
   const historialHTML = `
     <section style="max-width: 1200px; margin: 40px auto; padding: 0 20px; font-family: sans-serif;">
       <div id="seccion-vistos-reciente" style="display: none; margin-bottom: 40px;">
@@ -397,9 +406,58 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     </section>
   `;
-  // Insertamos las secciones justo antes del bloque del formulario final
   const elForm = document.getElementById("mps") || document.body.lastElementChild;
   if(elForm) elForm.insertAdjacentHTML("beforebegin", historialHTML);
+
+  // 3. LOGICA INTERACTIVA DEL MEGA MENÚ
+  const btnCategorias = document.getElementById("btn-categorias");
+  const megaMenu = document.getElementById("mega-menu-cadelco");
+  const menuFlex = document.getElementById("menu-data-flex");
+  const loadingMenu = document.getElementById("loading-menu");
+
+  // Alternar visibilidad del menú al hacer clic
+  btnCategorias.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const estaOculto = megaMenu.style.display === "none";
+    megaMenu.style.display = estaOculto ? "flex" : "none";
+    
+    // Si se abre, cargamos los datos reales desde Neon a través de la API
+    if (estaOculto && menuFlex.children.length === 0) {
+      fetch("/api/categorias")
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.menu) {
+            loadingMenu.style.display = "none";
+            // Construir el árbol visual con los estilos de la marca
+            data.menu.forEach(padre => {
+              let columna = document.createElement("div");
+              columna.style.cssText = "flex: 1; min-width: 200px; font-family: sans-serif;";
+              
+              let tituloPadre = `<h4 style="color: #0A255C; margin: 0 0 10px 0; font-size: 15px; border-bottom: 1px solid #0A255C; padding-bottom: 4px; text-transform: uppercase;">${padre.nombre_visible}</h4>`;
+              let listaHijas = `<ul style="list-style: none; padding: 0; margin: 0;">`;
+              
+              padre.subcategorias.forEach(hija => {
+                listaHijas += `<li style="margin-bottom: 8px;"><a href="#" class="enlace-subcat" data-id="${hija.id}" style="color: #333333; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#D31027'" onmouseout="this.style.color='#333333'">html_entity_decode${hija.nombre_visible}</a></li>`;
+              });
+              
+              listaHijas += `</ul>`;
+              columna.innerHTML = tituloPadre + listaHijas;
+              menuFlex.appendChild(columna);
+            });
+          }
+        })
+        .catch(err => {
+          loadingMenu.innerText = "Error al conectar con el servidor.";
+          console.error(err);
+        });
+    }
+  });
+
+  // Cerrar el menú si el usuario hace clic en cualquier otra parte de la pantalla
+  document.addEventListener("click", () => {
+    megaMenu.style.style.display = "none";
+  });
+  megaMenu.addEventListener("click", (e) => e.stopPropagation());
 });
 
 </script>
