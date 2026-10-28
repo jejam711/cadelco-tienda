@@ -347,6 +347,61 @@ setInterval(()=>{if($("#sv").hidden||P)return;E+=50;const u=$("#bars i:nth-child
       mensajeTexto.innerText = 'Hubo un problema con la conexión. Inténtalo más tarde.';
     }
   });
+// Inyección dinámica de la interfaz de Cadelco C.A. (Evita modificar el HTML superior)
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Crear e inyectar el Cintillo Superior y Banner de Temporada
+  const cabeceraHTML = `
+    <header style="background: #ffffff; border-bottom: 3px solid #0A255C; font-family: sans-serif; position: sticky; top: 0; z-index: 1000; padding: 10px 20px;">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+        <div style="display: flex; flex-direction: column; min-width: 180px;">
+          <span style="font-size: 24px; font-weight: bold; color: #0A255C; letter-spacing: 1px;">CADELCO <span style="color: #D31027;">C.A.</span></span>
+          <small style="font-style: italic; font-size: 11px; color: #555555; margin-top: -3px;">... Con todos los hierros</small>
+        </div>
+        <div style="flex: 1; max-width: 600px; display: flex; border: 2px solid #0A255C; border-radius: 4px; overflow: hidden;">
+          <input type="text" id="buscador-cadelco" placeholder="Buscar televisores, pinturas y más..." style="width: 100%; padding: 10px 15px; border: none; font-size: 14px; outline: none; color: #000000; background: #ffffff;">
+          <button style="background: #0A255C; color: #ffffff; border: none; padding: 0 20px; cursor: pointer; font-size: 16px;">🔍</button>
+        </div>
+        <nav style="position: relative;">
+          <button id="btn-categorias" style="background: #ffffff; border: 1px solid #0A255C; padding: 8px 15px; font-size: 14px; font-weight: bold; color: #0A255C; cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 8px;">
+            Categorías <span style="font-size: 10px; color: #D31027;">▼</span>
+          </button>
+          <div id="mega-menu-cadelco" style="display: none; position: absolute; right: 0; top: 120%; background: #ffffff; border: 1px solid #e0e0e0; box-shadow: 0 6px 12px rgba(0,0,0,0.15); width: 450px; padding: 20px; border-radius: 4px; border-top: 4px solid #D31027; flex-wrap: wrap; gap: 20px; max-height: 500px; overflow-y: auto;">
+            <!-- Rellenado dinámico backend -->
+          </div>
+        </nav>
+      </div>
+    </header>
+    <section id="banner-temporada" style="background: #f8f9fa; padding: 25px 20px; border-bottom: 1px solid #e9ecef; font-family: sans-serif;">
+      <div style="max-width: 1200px; margin: 0 auto; background: #ffffff; border-left: 5px solid #D31027; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <div style="text-align: left;">
+          <span style="background: #0A255C; color: #ffffff; padding: 3px 6px; font-size: 10px; font-weight: bold; border-radius: 3px; text-transform: uppercase;">Temporada de Renovación</span>
+          <h2 style="margin: 8px 0 4px 0; color: #111111; font-size: 20px;">¡Dale color a tus espacios!</h2>
+          <p style="margin: 0; color: #666666; font-size: 14px;">Descubre la línea Premium de Pinturas Pineco Prestige y Tráfico en Cadelco.</p>
+        </div>
+        <button style="background: #D31027; color: #ffffff; border: none; padding: 10px 20px; font-size: 13px; font-weight: bold; border-radius: 4px; cursor: pointer;">Ver Línea Construcción</button>
+      </div>
+    </section>
+  `;
+  document.body.insertAdjacentHTML("afterbegin", cabeceraHTML);
+
+  // 2. Crear e inyectar las secciones inferiores de Historial
+  const historialHTML = `
+    <section style="max-width: 1200px; margin: 40px auto; padding: 0 20px; font-family: sans-serif;">
+      <div id="seccion-vistos-reciente" style="display: none; margin-bottom: 40px;">
+        <h3 style="color: #0A255C; font-size: 18px; margin-bottom: 15px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">Visto recientemente</h3>
+        <div id="contenedor-vistos" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;"></div>
+      </div>
+      <div id="seccion-inspiracion" style="display: none;">
+        <h3 style="color: #0A255C; font-size: 18px; margin-bottom: 15px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">Inspirado en lo último que viste</h3>
+        <div id="contenedor-inspiracion" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;"></div>
+      </div>
+    </section>
+  `;
+  // Insertamos las secciones justo antes del bloque del formulario final
+  const elForm = document.getElementById("mps") || document.body.lastElementChild;
+  if(elForm) elForm.insertAdjacentHTML("beforebegin", historialHTML);
+});
+
 </script>
 
 </body>
