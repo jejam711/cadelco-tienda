@@ -347,30 +347,52 @@ setInterval(()=>{if($("#sv").hidden||P)return;E+=50;const u=$("#bars i:nth-child
       mensajeTexto.innerText = 'Hubo un problema con la conexión. Inténtalo más tarde.';
     }
   });
-// Inyección dinámica de la Portada Ejecutiva de Cadelco C.A.
+  // Inyección dinámica y control de Portada Ejecutiva de Cadelco C.A.
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Ocultar el catálogo bruto por defecto para limpiar la pantalla principal
-  const catalogoOriginal = document.getElementById("main-catalog-container") || document.querySelector(".grid")?.parentElement;
-  if (catalogoOriginal) {
-    catalogoOriginal.id = "catalogo-productos-cadelco";
-    catalogoOriginal.style.display = "none"; // Oculto en la página de inicio
-  }
+  // 1. Inyección de reglas CSS para controlar las pantallas y ocultar el catálogo por defecto
+  const estilosControl = `
+    <style>
+      /* Ocultar por defecto los elementos del catálogo viejo en la portada */
+      body > h2, body > p, #chips, .grid, input[placeholder*="marca o modelo"] { 
+        display: none !important; 
+      }
+      /* Clase especial para cuando activemos la vista interna limpia */
+      body.ver-catalogo-interno > h2, 
+      body.ver-catalogo-interno > p, 
+      body.ver-catalogo-interno #chips, 
+      body.ver-catalogo-interno .grid { 
+        display: block !important; 
+      }
+      body.ver-catalogo-interno .grid { 
+        display: grid !important; 
+      }
+    </style>
+  `;
+  document.head.insertAdjacentHTML("beforeend", estilosControl);
 
-  // 2. Crear e inyectar el Cintillo Superior y el Banner Promocional
+  // 2. Crear e inyectar el Cintillo Superior Delgado y el Banner Promocional
   const cabeceraHTML = `
     <header style="background: #ffffff; border-bottom: 3px solid #0A255C; font-family: sans-serif; position: sticky; top: 0; z-index: 1000; padding: 5px 20px;">
       <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
-        <div style="min-width: 110px; max-width: 120px; padding: 2px 0; cursor: pointer;" id="logo-inicio">
+        
+        <!-- Logo Oficial (Retorna al inicio al hacer clic) -->
+        <div style="min-width: 110px; max-width: 120px; padding: 2px 0; cursor: pointer;" id="logo-inicio-cadelco">
           <img src="/img/logo-cadelco.jpg" alt="CADELCO C.A." style="width: 100%; max-height: 45px; object-fit: contain; display: block;">
         </div>
+
+        <!-- Barra de Búsqueda Dinámica -->
         <div style="flex: 1; max-width: 600px; display: flex; border: 2px solid #0A255C; border-radius: 4px; overflow: hidden;">
-          <input type="text" id="buscador-cadelco" placeholder="Buscar televisores, pinturas y más..." style="width: 100%; padding: 10px 15px; border: none; font-size: 14px; outline: none; color: #000000; background: #ffffff;">
+          <input type="text" id="buscador-cadelco" placeholder="Buscar televisores, pinturas and más..." style="width: 100%; padding: 10px 15px; border: none; font-size: 14px; outline: none; color: #000000; background: #ffffff;">
           <button style="background: #0A255C; color: #ffffff; border: none; padding: 0 20px; cursor: pointer; font-size: 16px;">🔍</button>
         </div>
+
+        <!-- Menú Desplegable de Categorías -->
         <nav style="position: relative;">
           <button id="btn-categorias" style="background: #ffffff; border: 1px solid #0A255C; padding: 8px 15px; font-size: 14px; font-weight: bold; color: #0A255C; cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 8px;">
             Categorías <span style="font-size: 10px; color: #D31027;">▼</span>
           </button>
+          
+          <!-- Contenedor del Mega Menú -->
           <div id="mega-menu-cadelco" style="display: none; position: absolute; right: 0; top: 120%; background: #ffffff; border: 1px solid #e0e0e0; box-shadow: 0 6px 12px rgba(0,0,0,0.15); width: 480px; padding: 20px; border-radius: 4px; border-top: 4px solid #D31027; z-index: 2000; max-height: 500px; overflow-y: auto;">
             <div id="loading-menu" style="color: #666; font-size: 13px; text-align: center; width: 100%;">Cargando clasificaciones...</div>
             <div id="menu-data-flex" style="display: flex; flex-wrap: wrap; gap: 25px; width: 100%;"></div>
@@ -392,11 +414,11 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.body.insertAdjacentHTML("afterbegin", cabeceraHTML);
 
-  // 3. Crear e Inyectar los bloques de la Pantalla Principal (Secciones Inteligentes)
+  // 3. Crear e Inyectar las secciones inteligentes de la Portada Principal
   const bloquesPortadaHTML = `
     <div id="modulos-portada-cadelco" style="max-width: 1200px; margin: 30px auto; padding: 0 20px; font-family: sans-serif;">
       
-      <!-- Bloque 1: Lo más buscado global (Estilo Carrusel / Módulos destacados) -->
+      <!-- Sección: Lo más buscado -->
       <div style="margin-bottom: 45px;">
         <h3 style="color: #0A255C; font-size: 19px; margin-bottom: 15px; border-bottom: 2px solid #0A255C; padding-bottom: 6px; font-weight: bold;">Lo más buscado en la tienda</h3>
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -413,12 +435,10 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
 
-      <!-- Bloque 2: Visto recientemente / Inspirado en lo último (Memoria Local) -->
+      <!-- Sección: Historial (Oculta hasta guardar registros) -->
       <div id="bloque-historial-cliente" style="display: none; margin-bottom: 45px;">
         <h3 style="color: #0A255C; font-size: 19px; margin-bottom: 15px; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; font-weight: bold;">Inspirado en lo último que viste</h3>
-        <div id="contenedor-vistos-reciente" style="display: flex; gap: 15px; overflow-x: auto; padding: 10px 0;">
-          <!-- Cargado mediante localStorage en los próximos pasos -->
-        </div>
+        <div id="contenedor-vistos-reciente" style="display: flex; gap: 15px; overflow-x: auto; padding: 10px 0;"></div>
       </div>
 
     </div>
@@ -427,25 +447,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const elForm = document.getElementById("mps") || document.body.lastElementChild;
   if(elForm) elForm.insertAdjacentHTML("beforebegin", bloquesPortadaHTML);
 
-  // 4. LÓGICA DE CONTROL DE PANTALLAS (Intercambio dinámico)
+  // 4. INTERACTIVIDAD Y MANEJO DE PANTALLAS
   const btnCategorias = document.getElementById("btn-categorias");
   const megaMenu = document.getElementById("mega-menu-cadelco");
   const menuFlex = document.getElementById("menu-data-flex");
   const loadingMenu = document.getElementById("loading-menu");
   const modulosPortada = document.getElementById("modulos-portada-cadelco");
-  const contenedorCatalogo = document.getElementById("catalogo-productos-cadelco");
-  const logoInicio = document.getElementById("logo-inicio");
+  const bannerTemporada = document.getElementById("banner-temporada");
+  const logoInicio = document.getElementById("logo-inicio-cadelco");
 
-  // Función para restablecer la vista a la Portada de Inicio
-  const mostrarPantallaPrincipal = () => {
-    if(contenedorCatalogo) contenedorCatalogo.style.display = "none";
-    if(modulosPortada) modulosPortada.style.display = "block";
-    document.getElementById("banner-temporada").style.display = "block";
-  };
+  // Volver a la portada de bienvenida al hacer clic en el logo
+  if(logoInicio) {
+    logoInicio.addEventListener("click", () => {
+      document.body.classList.remove("ver-catalogo-interno");
+      if(modulosPortada) modulosPortada.style.display = "block";
+      if(bannerTemporada) bannerTemporada.style.display = "block";
+    });
+  }
 
-  if(logoInicio) logoInicio.addEventListener("click", mostrarPantallaPrincipal);
-
-  // Despliegue dinámico del Mega Menú
+  // Desplegar el menú y consultar subcategorías a Neon
   if(btnCategorias && megaMenu) {
     btnCategorias.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -474,24 +494,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 menuFlex.appendChild(columna);
               });
 
-              // Agregar eventos a los enlaces de las subcategorías para abrir la vista limpia
+              // Evento para activar la vista limpia al presionar una subcategoría
               document.querySelectorAll(".enlace-subcategoria-menu").forEach(enlace => {
                 enlace.addEventListener("click", (evento) => {
                   evento.preventDefault();
                   megaMenu.style.display = "none";
                   
-                  const subcatId = evento.target.getAttribute("data-id");
                   const subcatNombre = evento.target.getAttribute("data-nombre");
-
-                  // Ocultar los módulos de portada y activar el catálogo limpio
-                  if(modulosPortada) modulosPortada.style.display = "none";
-                  document.getElementById("banner-temporada").style.display = "none";
-                  
-                  if(contenedorCatalogo) {
-contenedorCatalogo.style.display = "block";
-// Modificar el encabezado dinámicamente si existe la etiqueta del título
-const tituloSeccion = contenedorCatalogo.querySelector("h2") || document.querySelector("h1");
-if(tituloSeccion) tituloSeccion.innerHTML = ${subcatNombre} <br><small style="font-size:14px; font-weight:normal; color:#666;">Resultados de la clasificación oficial</small>;
+// Ocultar portada y banner comercial
+if(modulosPortada) modulosPortada.style.display = "none";
+if(bannerTemporada) bannerTemporada.style.display = "none";
+// Activar el catálogo inyectando la clase especial al body
+document.body.classList.add("ver-catalogo-interno");
+// Actualizar dinámicamente el título del catálogo abierto
+const tituloSeccion = document.querySelector("h2") || document.querySelector("h1");
+if(tituloSeccion) {
+tituloSeccion.innerHTML = ${subcatNombre} <br><small style="font-size:14px; font-weight:normal; color:#666;">Línea de distribución oficial</small>;
 }
 });
 });
