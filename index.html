@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Cadelco · Catálogo de televisores</title>
+  <title>Cadelco C.A. · Tienda en línea</title>
   <meta name="application-name" content="Cadelco">
-  <meta name="description" content="Explora el catálogo de televisores Cadelco. Compara modelos Mystic, Sankey, Aiwa y ChiQ, consulta sus fichas técnicas y descubre sus características en presentaciones narradas.">
+  <meta name="description" content="Cadelco C.A.: televisores, pinturas y materiales de construcción. Consulta fichas técnicas y ofertas.">
   <meta property="og:site_name" content="Cadelco">
-  <meta property="og:title" content="Cadelco · Catálogo de televisores">
-  <meta property="og:description" content="Explora los televisores Cadelco con filtros por marca, fichas técnicas y presentaciones narradas.">
+  <meta property="og:title" content="Cadelco C.A. · Tienda en línea">
+  <meta property="og:description" content="Televisores, pinturas y materiales de construcción en Cadelco C.A.">
   <meta property="og:type" content="website">
-  <link href="https://googleapis.com" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#ffffff;--card:#fff;--ink:#000000;--mut:#556579;--ac:#D31027;--on:#fff;--nv:#0A255C;--ln:#dde3ea;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
     *{box-sizing:border-box}[hidden]{display:none!important}
@@ -79,11 +79,37 @@
     @keyframes bf{from{width:0}}
     .w{display:inline-block;margin-right:.3em;opacity:0;animation:up .5s forwards}
     @media(prefers-reduced-motion:reduce){*{animation:none!important}#sc li,.w{opacity:1}}
+    /* Vistas: el catálogo (#hd, #tools, #grid) solo se muestra en la página de catálogo */
+    #hd,#tools,#grid{display:none}
+    #cinta{position:relative;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 20px;background:#fff;border-bottom:3px solid var(--nv)}
+    #logo-inicio-cadelco{text-decoration:none;line-height:1}
+    #logo-inicio-cadelco b{display:block;font:700 30px/1 "Barlow Condensed","Arial Narrow",sans-serif;color:var(--nv);letter-spacing:.5px}
+    #logo-inicio-cadelco b i{font-style:normal;color:var(--ac)}
+    #logo-inicio-cadelco small{display:block;margin-top:3px;font-size:11px;font-style:italic;color:var(--mut)}
+    .bsq{flex:1;min-width:220px;display:flex}
+    #buscador-cadelco{flex:1;min-width:0;padding:11px 14px;border:2px solid var(--nv);border-right:0;border-radius:6px 0 0 6px;font:inherit;color:var(--ink);background:#fff}
+    #btn-buscar{border:0;background:var(--nv);color:#fff;padding:0 18px;border-radius:0 6px 6px 0}
+    #btn-categories-cadelco{background:#fff;border:2px solid var(--nv);color:var(--nv);border-radius:6px;padding:9px 16px;font:700 14px Manrope,system-ui,sans-serif}
+    #mega-menu-cadelco{position:absolute;right:20px;top:100%;z-index:30;background:#fff;border:1px solid var(--ln);border-radius:8px;box-shadow:0 8px 24px #0002;padding:18px;gap:24px;flex-wrap:wrap;width:min(900px,94vw)}
+    #loading-menu{width:100%;margin:0;color:var(--mut)}
+    #menu-data-flex{display:contents}
+    .mcol{flex:1;min-width:180px}.mcol h4{margin:0 0 8px;color:var(--nv)}
+    .mcol ul{list-style:none;margin:0;padding:0}.mcol a{display:block;padding:5px 0;color:var(--ink);text-decoration:none}.mcol a:hover{color:var(--ac)}
+    #banner-temporada{max-width:1200px;margin:18px auto;padding:16px 20px;background:#fff;border:1px solid var(--ln);border-left:4px solid var(--ac);border-radius:6px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .tag{display:inline-block;margin-bottom:6px;padding:3px 8px;border-radius:3px;background:var(--nv);color:#fff;font:700 10px Manrope,sans-serif;text-transform:uppercase}
+    #banner-temporada h2{margin:0 0 4px;font-size:21px;color:var(--nv)}
+    #banner-temporada p{margin:0;color:var(--mut);font-size:14px}
+    .btn-rojo{background:var(--ac);color:#fff;border:0;border-radius:6px;padding:11px 18px;font:700 13px Manrope,system-ui,sans-serif}
+    #bloque-newsletter{max-width:1200px;margin:0 auto 40px;padding:26px 20px;background:var(--nv);color:#fff;border-radius:8px;text-align:center}
+    #bloque-newsletter h3{margin:0 0 6px;font-size:20px}#bloque-newsletter p{margin:0 0 14px;opacity:.9}
+    #form-newsletter{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+    #form-newsletter input{padding:11px 14px;border:0;border-radius:6px;min-width:240px;font:inherit}
+    #nl-msg{margin:12px 0 0!important;min-height:1.4em}
   </style>
 </head>
 <body>
 
-  <!-- Cabecera antigua oculta por script -->
+  <!-- Cabecera del catálogo: solo se muestra en la vista de catálogo -->
   <header id="hd">
     <img id="lg" alt="Cadelco" src="/img/cadelco-25.jpg">
     <div><b>Televisores</b><small>Toca un modelo para ver su ficha</small></div>
@@ -138,197 +164,152 @@
 ["Aiwa","AW40B2RK",40,"LED","Full HD|1920×1080",60,"1200:1 nativo","Quad-Core","12 W","Roku TV","512 MB","Wi-Fi, Bluetooth, 3 HDMI","Rápido de verdad y sin complicaciones de plataformas."],
 ["Mystic","MY-SQGH50206",50,"QLED","4K|3840×2160",60,"3000:1 a 5000:1","Quad-Core","16 W","Android TV","2 GB","Wi-Fi, Bluetooth, Chromecast","Películas y partidos con la calidad visual de un cine de lujo."]
 ];
-let D = [];
-async function cargarCatalogoProtegido() {
-try {
-const respuesta = await fetch('/api/catalogo');
-const datos = await respuesta.json();
-if (datos.success && datos.articulos && datos.articulos.length > 0) {
-D = datos.articulos.map(art => {
-const tech = art.caracteristicas_tecnicas || {};
-return [
-art.marca || "", art.modelo || "", parseFloat(tech.pulgadas) || 0,
-tech.tipo_pantalla || "", ${tech.resolucion_etiqueta || ''}|${tech.resolucion_detalle || ''},
-parseInt(tech.refresco) || 60, tech.contraste || "",
-${tech.procesador_etiqueta || ''}|${tech.procesador_detalle || ''},
-${tech.sonido_etiqueta || ''}|${tech.sonido_detalle || ''},
-${tech.sistema_etiqueta || ''}|${tech.sistema_detalle || ''},
-${tech.ram || ''}|${tech.rom || ''}, tech.conexiones || "",
-art.argumento_venta_pitch || ""
-];
-});
-arrancarInterfazProtegida();
-} else { throw new Error("Datos vacíos"); }
-} catch (error) {
-D = D_LOCAL;
-arrancarInterfazProtegida();
-}
-}
-function arrancarInterfazProtegida() {
-chips();
-grid();
-const viejoHeader = document.getElementById("hd");
-const herramientasBusqueda = document.getElementById("tools");
-const rejillaProductos = document.getElementById("grid");
-if(viejoHeader) viejoHeader.style.setProperty("display", "none", "important");
-if(herramientasBusqueda) herramientasBusqueda.style.setProperty("display", "none", "important");
-if(rejillaProductos) {
-rejillaProductos.style.setProperty("display", "none", "important");
-}
-}
-function chips() {
-const c = document.getElementById("chips");
-if(!c) return;
-const marcas = ["Todos", ...new Set(D.map(x => x[0]))];
-c.innerHTML = marcas.map((m, i) => <button class="ch ${i===0?'on':''}" onclick="filtrarMarca('${m}', this)">${m}</button>).join("");
-}
-function grid() {
-const g = document.getElementById("grid");
-if(!g) return;
-const q = document.getElementById("q") ? document.getElementById("q").value.toLowerCase() : "";
-const activos = D.filter(x => x[0].toLowerCase().includes(q) || x[1].toLowerCase().includes(q));
-if(activos.length === 0) { g.innerHTML = 'No se encontraron modelos'; return; }
-g.innerHTML = activos.map((x, i) => <div class="cd" onclick="verDetalle('${x[1]}')"> <div class="im"><img src="${IM[i % IM.length]}" alt="${x[0]} ${x[1]}"></div> <b>${x[1]}</b> <small>${x[0]} · ${x[2]}"</small> <em>${x[4].split("|")[0]} - ${x[9].split("|")[0]}</em> </div>).join("");
-}
-function filtrarMarca(m, btn) {
-document.querySelectorAll(".ch").forEach(x => x.classList.remove("on"));
-btn.classList.add("on");
-const bus = document.getElementById("q");
-if(bus) { bus.value = m === "Todos" ? "" : m; grid(); }
-}
-document.addEventListener("DOMContentLoaded", () => {
-cargarCatalogoProtegido();
-// Cintillo Superior Corporativo y Banner de Temporada
-const cabeceraHTML = `
-🔍
+let D=[],MR="",CAT="",SL=[],S=0,E=0,du=5000,P=0,CI=0,V=1,SP=0;
+const $=s=>document.querySelector(s),sp=s=>String(s||"").split("|"),
+esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""),
+foto=m=>{const i=D_LOCAL.findIndex(x=>x[1]==m);return i<0?"/img/cadelco-25.jpg":IM[i]},
+lista=c=>Array.isArray(c)?c.map(String):String(c||"").includes("|")?String(c).split("|"):String(c||"").split(/,\s*/).filter(Boolean),
+hay=x=>norm([x[0],x[1],x[2],x[3],sp(x[4])[0],sp(x[7])[0],sp(x[9])[0],x[13],x[14]].join(" ")),
+catOK=x=>!CAT||(x[14]?norm(x[14]).includes(CAT):/tv|televis|pantalla/.test(CAT)&&x[2]>0);
 
+const CABECERA=`<div id="cinta"><a id="logo-inicio-cadelco" href="#"><b>CADELCO <i>C.A.</i></b><small>… Con todos los hierros</small></a><div class="bsq"><input id="buscador-cadelco" type="search" placeholder="Buscar televisores, pinturas y más..." aria-label="Buscar"><button id="btn-buscar" aria-label="Buscar">🔍</button></div><button id="btn-categories-cadelco" aria-haspopup="true">Categorías ▼</button><div id="mega-menu-cadelco" style="display:none"><p id="loading-menu">Cargando clasificaciones...</p><div id="menu-data-flex"></div></div></div><section id="banner-temporada"><div><span class="tag">Temporada de Renovación</span><h2>¡Dale color a tus espacios!</h2><p>Descubre la línea Premium de Pinturas Pineco Prestige y Tráfico en Cadelco.</p></div><button class="btn-rojo" id="btn-banner-construccion">Ver Línea Construcción</button></section>`;
+const PORTADA=`<div id="modulos-portada-cadelco" style="max-width: 1200px; margin: 30px auto; padding: 0 20px; font-family: sans-serif;"> <div style="margin-bottom: 45px;"> <h3 style="color: #0A255C; font-size: 19px; margin-bottom: 15px; border-bottom: 2px solid #0A255C; padding-bottom: 6px; font-weight: bold;">Lo más buscado en la tienda</h3> <div style="display: flex; gap: 20px; flex-wrap: wrap;"> <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid #e0e0e0; border-top: 4px solid #D31027; padding: 15px; border-radius: 4px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer;" id="buscar-gigantes"> <h4 style="margin: 0 0 10px 0; color: #0A255C;">📺 Pantallas Gigantes 4K</h4> <p style="font-size: 13px; color: #666; margin: 0 0 12px 0;">Disfruta la máxima experiencia cinematográfica en tu sala.</p> <span style="font-size: 12px; font-weight: bold; color: #D31027;">Explorar Línea →</span> </div> <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid #e0e0e0; border-top: 4px solid #0A255C; padding: 15px; border-radius: 4px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer;" id="buscar-pinturas"> <h4 style="margin: 0 0 10px 0; color: #0A255C;">🛠️ Pinturas Premium Prestige</h4> <p style="font-size: 13px; color: #666; margin: 0 0 12px 0;">Tecnología 3 en 1 con máxima lavabilidad y cubrimiento.</p> <span style="font-size: 12px; font-weight: bold; color: #D31027;">Explorar Colores →</span> </div> </div> </div> <div id="bloque-historial-cliente" style="display: none; margin-bottom: 45px;"> <h3 style="color: #0A255C; font-size: 19px; margin-bottom: 15px; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; font-weight: bold;">Inspirado en lo último que viste</h3> <div id="contenedor-vistos-reciente" style="display: flex; gap: 15px; overflow-x: auto; padding: 10px 0;"></div> </div> </div>`;
+const NEWS=`<section id="bloque-newsletter"><h3>Recibe ofertas y novedades de Cadelco</h3><p>Suscríbete y te avisamos de promociones, nuevos modelos y líneas de temporada.</p><form id="form-newsletter"><input id="nl-correo" type="email" required placeholder="tu@correo.com" aria-label="Correo electrónico"><button class="btn-rojo" type="submit">Suscribirme</button></form><p id="nl-msg" role="status"></p></section>`;
 
+/* ---------- Datos ---------- */
+async function cargarCatalogo(){
+  try{
+    const r=await fetch("/api/catalogo"),j=await r.json();
+    if(!(j.success&&Array.isArray(j.articulos)&&j.articulos.length))throw new Error("Datos vacíos");
+    D=j.articulos.map(a=>{const t=a.caracteristicas_tecnicas||{},p=(x,y)=>(t[x]||"")+"|"+(t[y]||"");
+      return[a.marca||"",a.modelo||"",parseFloat(t.pulgadas)||0,t.tipo_pantalla||"",p("resolucion_etiqueta","resolucion_detalle"),parseInt(t.refresco)||60,t.contraste||"",p("procesador_etiqueta","procesador_detalle"),p("sonido_etiqueta","sonido_detalle"),p("sistema_etiqueta","sistema_detalle"),(t.ram||"")+"|"+(t.rom||""),t.conexiones||"",a.argumento_venta_pitch||"",a.nombre_comercial||"",a.categoria_slug||a.categoria||""];});
+  }catch(err){console.warn("Se usa el catálogo local:",err);D=D_LOCAL.map(x=>x.slice());}
+  chips();grid();pintarVistos();ruta();
+}
 
-Categorías ▼
+/* ---------- Catálogo: marcas y tarjetas ---------- */
+function chips(){const c=$("#chips");if(!c)return;
+  c.innerHTML=["Todos",...new Set(D.map(x=>x[0]).filter(Boolean))].map(m=>`<button class="ch${(m=="Todos"?!MR:m==MR)?" on":""}" data-b="${esc(m)}">${esc(m)}</button>`).join("");}
+function tarjeta(x,i,extra){return `<button class="cd" data-i="${i}"${extra||""}><span class="im"><img src="${esc(foto(x[1]))}" alt="${esc(x[0]+" "+x[1])}" loading="lazy"></span><b>${esc(x[1])}</b><small>${esc(x[0])}${x[2]?" · "+x[2]+"”":""}</small><em>${esc([sp(x[4])[0],sp(x[9])[0]].filter(Boolean).join(" · "))}</em></button>`;}
+function grid(){const g=$("#grid");if(!g)return;const q=norm($("#q").value.trim());
+  const L=D.map((x,i)=>[x,i]).filter(([x])=>(!MR||x[0]==MR)&&catOK(x)&&(!q||hay(x).includes(q)));
+  g.innerHTML=L.length?L.map(([x,i])=>tarjeta(x,i)).join(""):`<p class="em">No se encontraron modelos.</p>`;}
 
+/* ---------- Vistas (inicio / catálogo) con URL compartible ---------- */
+function vista(cat){
+  [["#hd","flex"],["#tools","block"],["#grid","grid"]].forEach(([s,d])=>$(s).style.setProperty("display",cat?d:"none","important"));
+  ["modulos-portada-cadelco","banner-temporada","bloque-newsletter"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=cat?"none":"block";});
+}
+function ruta(){const h=location.hash;
+  if(h.startsWith("#/catalogo")){const p=new URLSearchParams(h.split("?")[1]||"");
+    $("#hd b").textContent=p.get("t")||"Televisores";$("#q").value=p.get("q")||"";CAT=norm(p.get("c"));MR="";chips();grid();vista(1);
+  }else{CAT="";MR="";vista(0);pintarVistos();}
+  window.scrollTo(0,0);}
+function activarVistaCatalogo(titulo,busqueda,cat){
+  const u="#/catalogo?"+new URLSearchParams({t:titulo,q:busqueda||"",c:cat||""});
+  location.hash.startsWith("#/catalogo")?history.replaceState(null,"",u):history.pushState(null,"",u);ruta();}
+function irAInicio(){const b=$("#buscador-cadelco");if(b)b.value="";history.pushState(null,"",location.pathname);ruta();}
 
-Cargando clasificaciones...
+/* ---------- "Inspirado en lo último que viste" ---------- */
+function vistos(){try{return JSON.parse(localStorage.getItem("cadelco_vistos")||"[]");}catch(x){return[];}}
+function guardarVisto(m){try{localStorage.setItem("cadelco_vistos",JSON.stringify([m,...vistos().filter(x=>x!=m)].slice(0,6)));}catch(x){}}
+function pintarVistos(){const b=$("#bloque-historial-cliente"),c=$("#contenedor-vistos-reciente");if(!b||!c)return;
+  const v=vistos().map(m=>D.findIndex(x=>x[1]==m)).filter(i=>i>=0);
+  b.style.display=v.length?"block":"none";c.innerHTML=v.map(i=>tarjeta(D[i],i,' style="flex:none;width:150px"')).join("");}
 
+/* ---------- Ficha del modelo ---------- */
+const mem=x=>{const[a,b]=sp(x);return !b?a:/almacen|RAM/i.test(b)?a+" "+b:`${a} de RAM · ${b} de almacenamiento`;};
+function detalle(i){const d=D[i];if(!d)return;guardarVisto(d[1]);
+  const j=x=>sp(x).filter(Boolean).join(": "),r=(k,v)=>v?`<dt>${k}</dt><dd>${v}</dd>`:"",cn=lista(d[11]);
+  $("#det").innerHTML=`<button id="bk">‹ Volver</button><div class="hero"><img src="${esc(foto(d[1]))}" alt="${esc(d[0]+" "+d[1])}"></div><h2>${esc(d[1])}</h2><p class="sub">${esc([d[0],d[2]?d[2]+"”":"",d[3]].filter(Boolean).join(" · "))}</p>${d[2]?`<button class="play" id="pl">Ver video</button>`:""}<dl>`
+   +r("Pantalla",d[2]?esc(d[2]+"” "+d[3]+" · "+d[5]+" Hz"):"")+r("Resolución",esc(j(d[4])))+r("Contraste",esc(d[6]))+r("Procesador",esc(j(d[7])))+r("Sonido",esc(j(d[8])))+r("Sistema operativo",esc(j(d[9])))+r("Memoria",esc(mem(d[10])))
+   +r("Conectividad",cn.length?"<ul>"+cn.map(x=>`<li>${esc(x)}</li>`).join("")+"</ul>":"")+r("Argumento de venta",esc(d[12]))+"</dl>";
+  $("#det").hidden=false;$("#det").scrollTop=0;document.body.style.overflow="hidden";
+  $("#bk").onclick=()=>{$("#det").hidden=true;document.body.style.overflow="";pintarVistos();};
+  const pl=$("#pl");if(pl)pl.onclick=()=>{SL=slides(i);S=0;P=0;$("#ps").textContent="Pausar";$("#tl").textContent=d[0]+" "+d[1];$("#sv").hidden=false;draw();};}
 
+/* ---------- Video animado ---------- */
+function slides(i){CI=i;const d=D[i],p=x=>[sp(x)[0],sp(x)[1]||""],a=p(d[4]),c=p(d[7]),s=p(d[8]),o=p(d[9]),m=p(d[10]),l=lista(d[11]),
+  ms=m[1]?(/almacen/i.test(m[1])?m[1]:`RAM, con ${m[1]} de almacenamiento`):"";
+  return[
+  {k:d[0],h:d[1],s:(d[2]?d[2]+"” ":"")+d[3],v:"hero",t:`${d[0]} ${d[1]}. ${d[2]} pulgadas.`,c:"#0f2238"},
+  {k:"Pantalla",h:a[0],s:[a[1],d[5]+" Hz",d[6]&&"Contraste: "+d[6]].filter(Boolean).join(" · "),v:"px",t:`Pantalla ${d[3]}, resolución ${a[0]}, a ${d[5]} hercios.`,c:"#12294a"},
+  {k:"Procesador",h:c[0],s:c[1],v:"cpu",t:`Procesador ${c[0]}. ${c[1]}.`,c:"#2a1840"},
+  {k:"Sonido",h:s[0],s:s[1],v:"eq",t:`Sonido de ${s[0]}. ${s[1]}.`,c:"#3a1622"},
+  {k:"Sistema operativo",h:o[0],s:o[1],v:"apps",t:`${o[0]}. ${o[1]}.`,c:"#0f3a3a"},
+  {k:"Memoria",h:m[0],s:ms,v:"mem",t:`Memoria: ${m[0]} ${ms}.`,c:"#1d2f12"},
+  {k:"Conectividad",h:"Conexiones",l,v:"list",t:"Conectividad. "+l.slice(0,3).join(". ")+".",c:"#15234d"},
+  {k:"Por qué elegirlo",h:d[1],s:d[12],v:"end",t:d[12],c:"#0f2238"}].filter(x=>x.h&&(x.v!="list"||l.length));}
+function vis(s){const v=s.v;
+  if(v=="hero")return`<div class="hero"><img src="${esc(foto(D[CI][1]))}" alt=""></div>`;
+  if(v=="px")return`<div class="px" style="--c:${/4K|UHD/i.test(s.h)?7:/Full/i.test(s.h)?14:22}px"></div>`;
+  if(v=="cpu"){const n=/x2|Quad/i.test(s.h)?4:/Dual/i.test(s.h)?2:1;return`<div class="cores">${Array.from({length:n},(_,j)=>`<i style="animation-delay:${j*.25}s"></i>`).join("")}</div>`;}
+  if(v=="eq")return`<div class="eq">${Array.from({length:14},(_,j)=>`<i style="animation-duration:${.5+(j*37%7)/10}s;animation-delay:${-j*.13}s"></i>`).join("")}</div>`;
+  if(v=="apps")return`<div class="ap">${["#e50914","#ff0000","#0a84ff","#1db954","#ffb400","#7d4cff","#00b894","#ff6b5e"].map((c,j)=>`<i style="background:${c};animation-delay:${j*.18}s"></i>`).join("")}</div>`;
+  if(v=="mem"){const g=t=>{const m=/(\d+(?:\.\d+)?)\s*(GB|MB)/i.exec(t||"");return m?(/MB/i.test(m[2])?m[1]/1024:+m[1]):0},r=g(s.h),q=/(\d+(?:\.\d+)?\s*(?:GB|MB))\s*de almacenamiento/i.exec(s.s||""),st=g(q?q[1]:s.s);
+    return r?`<div><small>Memoria RAM</small><div class="bar"><u style="--w:${Math.min(100,r/4*100)}%"></u></div></div>${st?`<div><small>Almacenamiento</small><div class="bar"><u style="--w:${Math.min(100,st/16*100)}%"></u></div></div>`:""}`:"";}
+  if(v=="list")return`<ul>${s.l.map((x,j)=>`<li style="animation-delay:${j*.5}s">${esc(x)}</li>`).join("")}</ul>`;
+  return"";}
+function pick(){const vs=(window.speechSynthesis?speechSynthesis.getVoices():[]).filter(v=>/^es/i.test(v.lang));let b=null,bs=-9;
+  vs.forEach(v=>{const n=v.name,sc=(/es[-_](MX|US|419)/i.test(v.lang)?3:/es[-_](CO|AR|CL|PE|VE|UY|EC|GT|CR|PA|DO|BO|PY|SV|HN|NI|PR|CU)/i.test(v.lang)?2:0)+(/jorge|juan|diego|carlos|alonso|pablo|raúl|raul|gonzalo|mateo|andr[eé]s|jes[uú]s|\bmale\b|masc/i.test(n)?5:0)-(/paulina|angelica|ang[eé]lica|dalia|paloma|sof[ií]a|soledad|monica|m[oó]nica|lupe|marisol|francisca|catalina|elena|helena|laura|female|femen/i.test(n)?5:0)+(/natural|online/i.test(n)?1:0);if(sc>bs){bs=sc;b=v;}});return b;}
+function say(t){const y=window.speechSynthesis,k=++say.n;SP=0;if(!y)return;y.cancel();if(!V)return;const u=new SpeechSynthesisUtterance(t),vv=pick();if(vv){u.voice=vv;u.lang=vv.lang;}else u.lang="es-MX";u.pitch=.75;u.rate=.95;SP=1;u.onend=u.onerror=()=>{if(k==say.n)SP=0;};y.speak(u);}say.n=0;
+function stop(){say.n++;SP=0;const y=window.speechSynthesis;if(y){y.cancel();y.resume();}$("#sv").hidden=true;}
+function draw(){const s=SL[S];E=0;du=4500+(s.l?s.l.length*700:0)+(s.v=="end"?3000:0);
+  const n=s.h.length,fs=n<=8?"min(24vw,128px)":n<=16?"min(14vw,80px)":"min(10vw,56px)",
+  tx=s.v=="end"?String(s.s).split(" ").map((w,j)=>`<span class="w" style="animation-delay:${.3+j*.09}s">${esc(w)}</span>`).join(""):esc(s.s||"");
+  $("#sv").style.background=s.c;
+  $("#bars").innerHTML=SL.map((_,j)=>`<i><u style="width:${j<S?100:0}%"></u></i>`).join("");
+  $("#sc").innerHTML=`<div class="scn"><div class="sk">${esc(s.k)}</div>${vis(s)}<h1 style="font-size:${fs}">${esc(s.h)}</h1>${tx?`<p>${tx}</p>`:""}</div>`;
+  const h=$("#sc h1"),m=/^(\d+(?:\.\d+)?)(.*)$/.exec(s.h);
+  if(m&&s.v!="hero"){const n=+m[1],t0=performance.now(),f=x=>{const k=Math.min(1,(x-t0)/1200);h.textContent=(n%1?(n*k).toFixed(1):Math.round(n*k))+m[2];if(k<1)requestAnimationFrame(f);};requestAnimationFrame(f);}
+  say(s.t);}
+function go(n){S+=n;if(S<0)S=0;if(S>=SL.length){stop();return;}draw();}
 
+/* ---------- Arranque ---------- */
+document.addEventListener("DOMContentLoaded",()=>{
+  document.body.insertAdjacentHTML("afterbegin",CABECERA);
+  document.body.insertAdjacentHTML("beforeend",PORTADA+NEWS);
+  const mm=$("#mega-menu-cadelco"),bc=$("#btn-categories-cadelco"),mf=$("#menu-data-flex"),lm=$("#loading-menu");
 
-Temporada de Renovación
-¡Dale color a tus espacios!
-Descubre la línea Premium de Pinturas Pineco Prestige y Tráfico en Cadelco.
+  $("#logo-inicio-cadelco").onclick=ev=>{ev.preventDefault();irAInicio();};
+  $("#buscador-cadelco").oninput=ev=>{const v=ev.target.value.trim();v?activarVistaCatalogo("Resultados de búsqueda",v):irAInicio();};
+  $("#btn-buscar").onclick=()=>{const v=$("#buscador-cadelco").value.trim();if(v)activarVistaCatalogo("Resultados de búsqueda",v);};
+  $("#buscar-gigantes").onclick=()=>activarVistaCatalogo("Pantallas Gigantes 4K","4K");
+  $("#buscar-pinturas").onclick=()=>activarVistaCatalogo("Herramientas y Construcción","Pineco");
+  $("#btn-banner-construccion").onclick=()=>activarVistaCatalogo("Herramientas y Construcción","Pineco");
 
-Ver Línea Construcción
+  bc.onclick=ev=>{ev.stopPropagation();const cerrado=mm.style.display=="none";mm.style.display=cerrado?"flex":"none";
+    if(cerrado&&!mf.children.length)fetch("/api/categorias").then(r=>r.json()).then(j=>{
+      if(!(j.success&&j.menu))throw new Error("Sin menú");lm.style.display="none";
+      j.menu.forEach(p=>{const col=document.createElement("div");col.className="mcol";
+        col.innerHTML=`<h4>${esc(p.nombre_visible)}</h4><ul>${(p.subcategorias||[]).map(h=>`<li><a href="#" class="enlace-subcategoria-menu" data-slug="${esc(h.slug||"")}" data-nombre="${esc(h.nombre_visible)}">${esc(h.nombre_visible)}</a></li>`).join("")}</ul>`;mf.appendChild(col);});
+    }).catch(err=>{lm.textContent="Error al conectar con el servidor de categorías.";console.error(err);});};
+  mf.onclick=ev=>{const a=ev.target.closest(".enlace-subcategoria-menu");if(!a)return;ev.preventDefault();mm.style.display="none";
+    const s=a.dataset.slug||"",n=a.dataset.nombre;/pintura/i.test(s)?activarVistaCatalogo(n,"Pineco"):activarVistaCatalogo(n,"",s);};
+  document.addEventListener("click",()=>{mm.style.display="none";});mm.onclick=ev=>ev.stopPropagation();
 
+  $("#form-newsletter").onsubmit=async ev=>{ev.preventDefault();const m=$("#nl-msg"),c=$("#nl-correo").value.trim();m.textContent="Enviando…";
+    try{const r=await fetch("/api/newsletter",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({correo:c,email:c})}),j=await r.json();
+      if(!r.ok||j.success===false)throw new Error("Rechazado");m.textContent="¡Listo! Ya estás suscrito.";ev.target.reset();
+    }catch(err){m.textContent="No pudimos registrar tu correo. Inténtalo de nuevo más tarde.";console.error(err);}};
 
-`;
-document.body.insertAdjacentHTML("afterbegin", cabeceraHTML);
-// Bloques de Destacados de Portada
-const bloquesPortadaHTML = <div id="modulos-portada-cadelco" style="max-width: 1200px; margin: 30px auto; padding: 0 20px; font-family: sans-serif;"> <div style="margin-bottom: 45px;"> <h3 style="color: #0A255C; font-size: 19px; margin-bottom: 15px; border-bottom: 2px solid #0A255C; padding-bottom: 6px; font-weight: bold;">Lo más buscado en la tienda</h3> <div style="display: flex; gap: 20px; flex-wrap: wrap;"> <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid #e0e0e0; border-top: 4px solid #D31027; padding: 15px; border-radius: 4px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer;" id="buscar-gigantes"> <h4 style="margin: 0 0 10px 0; color: #0A255C;">📺 Pantallas Gigantes 4K</h4> <p style="font-size: 13px; color: #666; margin: 0 0 12px 0;">Disfruta la máxima experiencia cinematográfica en tu sala.</p> <span style="font-size: 12px; font-weight: bold; color: #D31027;">Explorar Línea →</span> </div> <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid #e0e0e0; border-top: 4px solid #0A255C; padding: 15px; border-radius: 4px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer;" id="buscar-pinturas"> <h4 style="margin: 0 0 10px 0; color: #0A255C;">🛠️ Pinturas Premium Prestige</h4> <p style="font-size: 13px; color: #666; margin: 0 0 12px 0;">Tecnología 3 en 1 con máxima lavabilidad y cubrimiento.</p> <span style="font-size: 12px; font-weight: bold; color: #D31027;">Explorar Colores →</span> </div> </div> </div> <div id="bloque-historial-cliente" style="display: none; margin-bottom: 45px;"> <h3 style="color: #0A255C; font-size: 19px; margin-bottom: 15px; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; font-weight: bold;">Inspirado en lo último que viste</h3> <div id="contenedor-vistos-reciente" style="display: flex; gap: 15px; overflow-x: auto; padding: 10px 0;"></div> </div> </div>;
-document.body.insertAdjacentHTML("beforeend", bloquesPortadaHTML);
-// Elementos interactivos
-const btnCategorias = document.getElementById("btn-categories-cadelco");
-const megaMenu = document.getElementById("mega-menu-cadelco");
-const menuFlex = document.getElementById("menu-data-flex");
-const loadingMenu = document.getElementById("loading-menu");
-const modulosPortada = document.getElementById("modulos-portada-cadelco");
-const bannerTemporada = document.getElementById("banner-temporada");
-const logoInicio = document.getElementById("logo-inicio-cadelco");
-const viejoHeader = document.getElementById("hd");
-const herramientasBusqueda = document.getElementById("tools");
-const rejillaProductos = document.getElementById("grid");
-const buscadorGlobal = document.getElementById("buscador-cadelco");
-function irAInicio() {
-if(viejoHeader) viejoHeader.style.setProperty("display", "none", "important");
-if(herramientasBusqueda) herramientasBusqueda.style.setProperty("display", "none", "important");
-if(rejillaProductos) rejillaProductos.style.setProperty("display", "none", "important");
-if(modulosPortada) modulosPortada.style.display = "block";
-if(bannerTemporada) bannerTemporada.style.display = "block";
-if(buscadorGlobal) buscadorGlobal.value = "";
-}
-function activarVistaCatalogo(titulo, busquedaInicial) {
-if(modulosPortada) modulosPortada.style.display = "none";
-if(bannerTemporada) bannerTemporada.style.display = "none";
-if(viejoHeader) {
-viejoHeader.style.setProperty("display", "flex", "important");
-const bEtiqueta = viejoHeader.querySelector("b");
-if(bEtiqueta) bEtiqueta.innerText = titulo;
-}
-if(herramientasBusqueda) herramientasBusqueda.style.setProperty("display", "block", "important");
-if(rejillaProductos) {
-rejillaProductos.style.setProperty("display", "grid", "important");
-}
-const buscadorNativo = document.getElementById("q");
-if(buscadorNativo) {
-buscadorNativo.value = busquedaInicial;
-grid();
-}
-}
-if(logoInicio) logoInicio.addEventListener("click", irAInicio);
-if(buscadorGlobal) {
-buscadorGlobal.addEventListener("input", (e) => {
-const val = e.target.value;
-if(val.trim() !== "") {
-activarVistaCatalogo("Resultados de búsqueda", val);
-} else {
-irAInicio();
-}
-});
-}
-document.getElementById("buscar-gigantes").addEventListener("click", () => {
-activarVistaCatalogo("Pantallas Gigantes 4K", "4K");
-});
-document.getElementById("buscar-pinturas").addEventListener("click", () => {
-activarVistaCatalogo("Herramientas y Construcción", "Pineco");
-});
-if(btnCategorias && megaMenu) {
-btnCategorias.addEventListener("click", (e) => {
-e.stopPropagation();
-const estaOculto = megaMenu.style.display === "none";
-megaMenu.style.display = estaOculto ? "flex" : "none";
-if (estaOculto && menuFlex && menuFlex.children.length === 0) {
-fetch("/api/categorias")
-.then(res => res.json())
-.then(data => {
-if (data.success && data.menu && loadingMenu) {
-loadingMenu.style.display = "none";
-data.menu.forEach(padre => {
-let columna = document.createElement("div");
-columna.style.cssText = "flex: 1; min-width: 200px; font-family: sans-serif;";
-let tituloPadre = '' + padre.nombre_visible + '';
-let listaHijas = '';
-padre.subcategorias.forEach(hija => {
-listaHijas += '' + hija.nombre_visible + '';
-});
-listaHijas += '';
-columna.innerHTML = tituloPadre + listaHijas;
-menuFlex.appendChild(columna);
-});
-document.querySelectorAll(".enlace-subcategoria-menu").forEach(enlace => {
-enlace.addEventListener("click", (evento) => {
-evento.preventDefault();
-megaMenu.style.display = "none";
-const subcatSlug = evento.target.getAttribute("data-slug");
-const subcatNombre = evento.target.getAttribute("data-nombre");
-if(subcatSlug.includes("pinturas")) {
-activarVistaCatalogo(subcatNombre, "Pineco");
-} else {
-activarVistaCatalogo(subcatNombre, "");
-}
-});
-});
-}
-})
-.catch(err => {
-if(loadingMenu) loadingMenu.innerText = "Error al conectar con el servidor de categorías.";
-console.error(err);
-});
-}
-});
-document.addEventListener("click", () => megaMenu.style.display = "none");
-megaMenu.addEventListener("click", (e) => e.stopPropagation());
-}
+  $("#chips").onclick=ev=>{const b=ev.target.dataset.b;if(b){MR=b=="Todos"?"":b;chips();grid();}};
+  $("#q").oninput=grid;
+  $("#grid").onclick=ev=>{const c=ev.target.closest(".cd");if(c)detalle(+c.dataset.i);};
+  $("#contenedor-vistos-reciente").onclick=ev=>{const c=ev.target.closest(".cd");if(c)detalle(+c.dataset.i);};
+
+  $("#nx").onclick=()=>go(1);$("#pv").onclick=()=>go(-1);$("#cl").onclick=stop;
+  $("#ps").onclick=()=>{P=!P;$("#ps").textContent=P?"Reproducir":"Pausar";const y=window.speechSynthesis;if(y){P?y.pause():y.resume();}};
+  $("#vz").onclick=()=>{V=!V;$("#vz").textContent=V?"Voz sí":"Voz no";if(V)say(SL[S].t);else{say.n++;SP=0;const y=window.speechSynthesis;if(y)y.cancel();}};
+  document.addEventListener("keydown",ev=>{if($("#sv").hidden)return;if(ev.key=="ArrowRight")go(1);if(ev.key=="ArrowLeft")go(-1);if(ev.key=="Escape")stop();});
+  setInterval(()=>{if($("#sv").hidden||P)return;E+=50;const u=$("#bars i:nth-child("+(S+1)+") u");if(u)u.style.width=Math.min(100,E/du*100)+"%";if(E>=du&&(!SP||E>=du+9000))go(1);},50);
+  window.addEventListener("popstate",ruta);window.addEventListener("hashchange",ruta);
+
+  cargarCatalogo();
 });
 
-</script>
+  </script>
 
 </body>
 </html>
